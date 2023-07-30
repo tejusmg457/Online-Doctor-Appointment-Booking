@@ -1,0 +1,25 @@
+@charset "ISO-8859-1";
+body{
+    color: white;
+    margin: 0px;
+    padding: 0px;
+    background-image: url("https://images.pexels.com/photos/236380/pexels-photo-236380.jpeg?auto=compress&cs=tinysrgb&w=1600");
+}
+
+.header{
+    margin-top: 0px;
+    height: 45px;
+    width: 100%;
+    background-color: ghostwhite;  
+}
+
+.button{
+    text-decoration: none;
+    padding: 1000px 25px;
+    font-size: 20px;
+    
+}
+
+a{
+    text-align: center;
+}
