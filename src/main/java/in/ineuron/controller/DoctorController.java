@@ -22,14 +22,17 @@ public class DoctorController {
 	private IDoctorService doctorService;
 	
 	@PostMapping("/doctorlogin")
-	public String loginDocter(@RequestParam String did, String dpassword) {
-		System.out.println("DocterController.loginDocter()");
-		System.out.println(did+dpassword);
-		return "adsuccess";
+	public String loginDocter(@RequestParam String demail, String dpassword, Map<String, String>model) {
+		String dbpassword = doctorService.loginDoctor(demail);
+		if(dpassword.equalsIgnoreCase(dbpassword)) {
+			return "";
+		}else {
+			String msg = "Login failed";
+			model.put("msg",msg);
+			return "";
+		}		
 	}
 	
-	
-
 	@GetMapping("/listOfPendingAppointments/did")
 	public String listOfPendingAppointments(@PathVariable String did, Map<String, Object> model) {
 			List<AppointmentData> appointmentData = (List<AppointmentData>) doctorService.listOfPendingAppointments(did);

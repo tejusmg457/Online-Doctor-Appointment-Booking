@@ -4,6 +4,8 @@ import in.ineuron.model.AppointmentData;
 import in.ineuron.model.Customer;
 
 public interface ICustomerService {
+	
+	public String loginCustomer(String cemail);
 
     public String saveCustomer(Customer customer);
 

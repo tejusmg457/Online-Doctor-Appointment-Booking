@@ -12,6 +12,7 @@ import org.hibernate.id.IdentifierGenerator;
 
 public class DoctorIdGenerator implements IdentifierGenerator {
 	
+	@Override
 	public Serializable generate(SharedSessionContractImplementor session, Object object) throws HibernateException {
 		String id = null;
 		int records = 0;
@@ -21,7 +22,7 @@ public class DoctorIdGenerator implements IdentifierGenerator {
 		try {
 			connection2 = session.connection();
 			statement2 = connection2.createStatement();
-			rs2 = statement2.executeQuery("SELECT COUNT(did) FROM Docter");
+			rs2 = statement2.executeQuery("SELECT COUNT(did) FROM Doctor");
 			while(rs2.next()) {
 				records = rs2.getInt(1);
 				records++;

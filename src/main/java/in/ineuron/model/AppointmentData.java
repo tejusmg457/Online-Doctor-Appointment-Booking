@@ -27,7 +27,7 @@ public class AppointmentData {
     private String pname;
     private int page;
     private Date adate;
-    private String symptoms;
+    private String psymptoms;
     private String dname;
     private String dspecialist;
     

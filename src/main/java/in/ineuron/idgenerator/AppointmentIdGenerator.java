@@ -13,6 +13,7 @@ import org.hibernate.id.IdentifierGenerator;
 
 public class AppointmentIdGenerator implements IdentifierGenerator {
 	
+	@Override
 	public Serializable generate(SharedSessionContractImplementor session, Object object) throws HibernateException {
 		String id = null;
 		int records = 0;

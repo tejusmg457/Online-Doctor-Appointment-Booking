@@ -18,6 +18,13 @@ public class ICustomerServiceImpl implements ICustomerService{
 
     @Autowired
     private ICustomerRepoForAppointment customerRepoforAppointment;
+    
+	@Override
+	public String loginCustomer(String cemail) {
+		String cdpassword = customerRepo.loginCustomer(cemail);
+		System.out.println(cdpassword);
+		return cdpassword;
+	}
 
     @Override
     public String saveCustomer(Customer customer) {
@@ -26,7 +33,7 @@ public class ICustomerServiceImpl implements ICustomerService{
         System.out.println("customer id is :: "+ id);
         flag=true;
         if(flag){
-            return "Customer registration successfully & id is "+ id;
+            return id;
         }else
             return "Customer registration failed";
     }
@@ -36,7 +43,7 @@ public class ICustomerServiceImpl implements ICustomerService{
         Optional<Customer> customer = customerRepo.findById(id);
         if(customer.isPresent()){
             customerRepo.deleteById(id);
-            return "Customer data deleted successfully";
+            return "yes";
         }else
             return "Deletion failed try again!";
     }
@@ -47,7 +54,7 @@ public class ICustomerServiceImpl implements ICustomerService{
        AppointmentData data = customerRepoforAppointment.save(appointmentData);
        flag=true;
        if(flag){
-         return  "your appointment is taken & Token id is :: " + data.getAppointId();
+         return  data.getAppointId();
         }else
             return "Something went wrong try again! by entering appropriating details";
     }
