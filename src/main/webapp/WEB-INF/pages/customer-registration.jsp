@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div>
-		<form action="customer/save-customer" method = "post"> 
+		<form action="save-customer" method = "post"> 
 			<table>
 				<tr>
 					<td>Name</td><td><input type="text" name="cname"></input></td>

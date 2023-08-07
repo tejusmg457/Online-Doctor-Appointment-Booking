@@ -13,7 +13,7 @@
         <button>Admin</button>
         </form>
         
-        <form action= "/book-your-appointment/doctorlogin" method="post">
+        <form action= "/book-your-appointment/doctor/doctor-login" method="get">
         <button>Doctor</button>
         </form>
         

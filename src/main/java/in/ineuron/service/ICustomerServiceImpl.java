@@ -5,9 +5,11 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import in.ineuron.dao.IAppointmentRepo;
 import in.ineuron.dao.ICustomerRepo;
 import in.ineuron.dao.ICustomerRepoForAppointment;
 import in.ineuron.model.AppointmentData;
+import in.ineuron.model.AppointmentStatus;
 import in.ineuron.model.Customer;
 
 @Service(value="customerService")
@@ -18,6 +20,9 @@ public class ICustomerServiceImpl implements ICustomerService{
 
     @Autowired
     private ICustomerRepoForAppointment customerRepoforAppointment;
+    
+    @Autowired
+    private IAppointmentRepo appointmentStatusRepo;
     
 	@Override
 	public String loginCustomer(String cemail) {
@@ -50,13 +55,20 @@ public class ICustomerServiceImpl implements ICustomerService{
 
     @Override
     public String getAppointment(AppointmentData appointmentData) {
-       boolean flag = false;
+       
+       AppointmentStatus appointmentStatus = new AppointmentStatus();
+       
+       appointmentStatus.setStatus("Pending");
+       appointmentStatus.setMessage("Need to be approval from doctor end");
+       appointmentStatus.setAppointmentData(appointmentData);
+       
+       
+   
        AppointmentData data = customerRepoforAppointment.save(appointmentData);
-       flag=true;
-       if(flag){
-         return  data.getAppointId();
-        }else
-            return "Something went wrong try again! by entering appropriating details";
+       appointmentStatusRepo.save(appointmentStatus);
+       System.out.println("saved data "+data);
+       return  data.getAppointid();
+
     }
 
 	@Override
@@ -64,5 +76,5 @@ public class ICustomerServiceImpl implements ICustomerService{
 		int num = customerRepo.noOfCustomers();
 		return num;
 	}
-    
+    //SELECT * FROM appointmentdata a inner join appointment_status s where a.appointid = s.appointmentid;
 }

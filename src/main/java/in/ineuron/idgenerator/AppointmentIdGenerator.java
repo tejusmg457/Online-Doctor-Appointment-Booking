@@ -23,14 +23,17 @@ public class AppointmentIdGenerator implements IdentifierGenerator {
 		try {
 			connection1 = session.connection();
 			statement1 = connection1.createStatement();
-			rs1 = statement1.executeQuery("SELECT COUNT(appoint_id) FROM appointment_data");
+			rs1 = statement1.executeQuery("SELECT COUNT(appointid) FROM Appointmentdata");
 			while(rs1.next()) {
 				records = rs1.getInt(1);
 				records++;
+				System.out.println("AppointmentIdGenerator.generate()");
+				System.out.println(records);
 				LocalDate date = LocalDate.now();
 				int day = date.getDayOfMonth();
 				int month = date.getMonthValue();
-				id = "APP"+"-"+day+"-"+month+"-"+records;
+				id = "APP"+day+month+records;
+				System.out.println("final id is "+id);
 				return id;
 			}
 		} catch (SQLException e) {

@@ -31,8 +31,8 @@
 				
 				<tr>
 					<td>Doctor</td> <td><select name="dname">
-											<option>Doc. Tejas</option>
-										    <option>Doc. Tarun</option>
+											<option>TEJAS</option>
+										    <option>TARUN</option>
 										</select>
 									</td>
 				</tr>

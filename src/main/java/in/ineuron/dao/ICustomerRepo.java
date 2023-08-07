@@ -15,5 +15,7 @@ public interface ICustomerRepo extends JpaRepository<Customer, String>{
 	
 	@Query("SELECT cpassword FROM Customer where cemail=:n")
 	public String loginCustomer(@Param("n") String cemail);
+	
+	
 
 }

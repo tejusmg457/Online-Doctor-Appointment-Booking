@@ -62,15 +62,6 @@ public class AdminController {
     	return "display-doctors";
     }
     
-    @GetMapping("/noofdocters")
-    public String noOfDocters(Map<String, String> model) {
-    	int noOfDoc = docterService.noOfDocters();
-    	String totalRecords = Integer.toString(noOfDoc);
-     	model.put("totalRecords", totalRecords);
-     	System.out.println(noOfDoc);
-     	return "admin-dashboard";	
-    }
-    
     @DeleteMapping("/delete-customer")
     public String deleteCustomer(@RequestParam String cid, Map<String, String> model) {
     	String status = customerService.deleteCustomer(cid);
@@ -90,6 +81,6 @@ public class AdminController {
     public String deleteDoctor(@RequestParam String did, Map<String, String> model) {
     	String msg = docterService.deleteDoctor(did);
     	model.put("msg", msg);
-    	return "redirect:/admin/display-doctors";
+    	return "redirect:/admin/listofdoctors";
     }
 }

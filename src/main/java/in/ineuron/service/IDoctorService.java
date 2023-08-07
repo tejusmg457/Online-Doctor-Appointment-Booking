@@ -15,9 +15,9 @@ public interface IDoctorService {
     
     public List<Doctor> listOfDocters();
     
-    public int noOfDocters();
-    
     public String deleteDoctor(String did);
+    
+    public String approveAppointment(String appointmentId);
     
 
 }

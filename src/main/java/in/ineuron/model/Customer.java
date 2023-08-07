@@ -1,5 +1,6 @@
 package in.ineuron.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -21,12 +22,25 @@ public class Customer {
     @Id
     @GenericGenerator(name="mygen", strategy = "in.ineuron.idgenerator.CustomerIdGenerator")
     @GeneratedValue(generator = "mygen")
+    @Column(name="cid")
     private String cid;
+    
+    @Column(name="cname")
     private String cname;
+    
+    @Column(name="cage")
     private int cage;
+    
+    @Column(name="cgender")
     private String cgender;
+    
+    @Column(name="cphoneNo")
     private long cphoneNo;
+    
+    @Column(name="cemail")
     private String cemail;
+    
+    @Column(name="cpassword")
     private String cpassword;
     
 }

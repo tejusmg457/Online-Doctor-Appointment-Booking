@@ -8,13 +8,13 @@
 </head>
 <body>
 	<div>
-        <form action="doctor/doctorlogin" method="post">
+        <form action="doctorlogin" method="post">
                 <table>
-                    <tr><td>Doctor ID</td><td><input type="text" name="did"></td></tr>
+                    <tr><td>Email</td><td><input type="text" name="demail"></td></tr>
                     <tr><td>Password</td><td><input type="password"name="dpassword"></td></tr>
                 </table>
                 <br>
-                <button>Submitt</button>
+                <button>Submit</button>
         </form>
     </div>
 </body>

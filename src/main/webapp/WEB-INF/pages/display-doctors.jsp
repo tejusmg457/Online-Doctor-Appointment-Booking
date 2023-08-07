@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" %>
     <%@ page import="in.ineuron.model.Doctor"%> <%@ page import="java.util.List" %>
-    
-    
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,12 +27,5 @@
 			</tr>
 		<% } %>		
 	</table>
-	 <%
-		String result =(String) request.getAttribute("msg"); 
-	 %> 
-	 <%
-	   	 if(result!=null){ %> 
-  		  <h1><%= result %></h1> 
-	<%} %>		 
 </body>
 </html>

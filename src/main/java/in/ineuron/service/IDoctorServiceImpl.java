@@ -5,8 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import in.ineuron.dao.IAppointmentRepo;
+import in.ineuron.dao.ICustomerRepoForAppointment;
 import in.ineuron.dao.IDoctorRepo;
 import in.ineuron.model.AppointmentData;
+import in.ineuron.model.AppointmentStatus;
 import in.ineuron.model.Doctor;
 
 @Service(value="docterService")
@@ -14,6 +17,12 @@ public class IDoctorServiceImpl implements IDoctorService {
 
     @Autowired
     private IDoctorRepo doctorRepo;
+    
+    @Autowired
+    private ICustomerRepoForAppointment customerRepoforAppointment;
+    
+    @Autowired
+    private IAppointmentRepo appointmentStatusRepo;
 
     @Override
     public String saveDocter(Doctor doctor) {
@@ -22,21 +31,16 @@ public class IDoctorServiceImpl implements IDoctorService {
     }
 
     @Override
-    public List<AppointmentData> listOfPendingAppointments(String did) {
-    	List<AppointmentData> appointmentData = (List<AppointmentData>) doctorRepo.listOfPendingAppointments(did);
-    	System.out.println(appointmentData);
-		return appointmentData;
+    public List<AppointmentData> listOfPendingAppointments(String demail) {
+    	String dname = doctorRepo.findDocName(demail);
+		List<AppointmentData> data = customerRepoforAppointment.findByDname(dname);
+		return data;
     }
 
 	@Override
 	public List<Doctor> listOfDocters() {
 		List<Doctor> doctors = doctorRepo.findAll();
 		return doctors;
-	}
-
-	@Override
-	public int noOfDocters() {
-		return doctorRepo.noOfDocters();
 	}
 
 	@Override
@@ -51,9 +55,14 @@ public class IDoctorServiceImpl implements IDoctorService {
 		return "Data deleted successfully for the id "+did;
 	}
 
+	@Override
+	public String approveAppointment(String appointmentId) {
+		System.out.println("IDoctorServiceImpl.approveAppointment()");
+		
+		int recordNo = appointmentStatusRepo.findRecordNo(appointmentId);
+		appointmentStatusRepo.updateAppointment(recordNo, "Visit clinic on date", "Approved");
+		return "approved";
+		
 	
-	
-    
-    
-
+	}
 }

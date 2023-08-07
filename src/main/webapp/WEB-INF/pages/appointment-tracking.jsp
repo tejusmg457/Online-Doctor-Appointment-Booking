@@ -7,9 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%
-		String docId = (String) request.getAttribute("msg");
-	%>
-	<h1>Doctor registered successfully and id :: <%= docId %></h1>
+	<h1>appointment tracking</h1>
 </body>
 </html>
