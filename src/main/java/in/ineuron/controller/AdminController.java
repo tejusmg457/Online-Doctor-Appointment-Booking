@@ -1,7 +1,9 @@
 package in.ineuron.controller;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import in.ineuron.model.AppointmentData;
 import in.ineuron.model.Doctor;
+import in.ineuron.service.IAppointmentService;
 import in.ineuron.service.ICustomerServiceImpl;
 import in.ineuron.service.IDoctorServiceImpl;
 
@@ -26,11 +30,23 @@ public class AdminController {
     @Autowired
     private ICustomerServiceImpl customerService;
     
+    @Autowired
+    private IAppointmentService appointmentService;
+    
     @PostMapping("/adminlogin")
-    public String verifyAdmin(@RequestParam String aname, String apassword) {
-    	if(aname.equalsIgnoreCase("admin") && apassword.equalsIgnoreCase("9844"))
+    public String verifyAdmin(@RequestParam String aname, String apassword, Map<String, Integer>model) {
+    	if(aname.equalsIgnoreCase("admin") && apassword.equalsIgnoreCase("9844")) {
+    		
+    		int noOfAppointmentsForToday = docterService.noOfAppointmentsForToday();
+    		int noOfCustomers = customerService.noOfCustomers();
+    		int noOfDoctors = docterService.noOfDoctors();
+    		
+        	model.put("noOfAppointmentsForToday", noOfAppointmentsForToday);
+        	model.put("noOfCustomers", noOfCustomers);
+        	model.put("noOfDoctors", noOfDoctors);
+        	
     		return "admin-dashboard";
-    	else 
+    	}else 
     		return "failure";
     }
     
@@ -82,5 +98,20 @@ public class AdminController {
     	String msg = docterService.deleteDoctor(did);
     	model.put("msg", msg);
     	return "redirect:/admin/listofdoctors";
+    }
+    
+    @GetMapping("/track-appointment")
+    public String trackAppointment(@RequestParam String apointid, Map<String,Optional<AppointmentData>>model) {
+    	Optional<AppointmentData> data = appointmentService.getAppointmentStatusById(apointid);
+    	model.put("data", data);
+    	return "admin-dashboard";
+    }
+    
+    @GetMapping("/listofappointments")
+    public String getAppointments(@RequestParam Date fdate, Date tdate, Map<String, List<AppointmentData>> model){
+    	System.out.println("AdminController.getAppointments()");
+    	List<AppointmentData> appointments = docterService.findAppointments(fdate, tdate);
+    	model.put("appointments", appointments);
+    	return "dispay-appointments";
     }
 }

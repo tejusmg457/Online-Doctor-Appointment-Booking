@@ -1,6 +1,9 @@
 package in.ineuron.service;
 
+import java.sql.Date;
 import java.util.List;
+
+import org.springframework.web.bind.annotation.RequestParam;
 
 import in.ineuron.model.AppointmentData;
 import in.ineuron.model.Doctor;
@@ -19,5 +22,14 @@ public interface IDoctorService {
     
     public String approveAppointment(String appointmentId);
     
+    public int noOfAppointmentsForToday();
+    
+    public int noOfDoctors();
+    
+    public List<AppointmentData> findAppointments(Date fdate, Date tdate);
+   
+    public String completeAppointment(@RequestParam String appointid);
+    
+    public List<AppointmentData> todayAppointmentList(String demail);
 
 }

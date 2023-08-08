@@ -54,7 +54,6 @@ public class DoctorController {
 	
 	@GetMapping("/approveAppointment")
 	public String approveAppointment(@RequestParam String appointmentId,  Map<String, String>model) {
-		
 		HttpSession session = req.getSession();
 		String demail = (String)session.getAttribute("demail");
 	
@@ -66,6 +65,27 @@ public class DoctorController {
 			return path;
 		}
 		return null;
+	}
+	
+	@PostMapping("/complete-appointment")
+	public String completeAppointment(@RequestParam String appointid, Map<String, String>model) {
+		String msg = doctorService.completeAppointment(appointid);
+		if(msg.equalsIgnoreCase("completed")) {
+			String demail = (String) req.getSession().getAttribute("demail");
+			System.out.println(demail);
+			String info = "Status updated for id "+appointid;
+			model.put("info", info);
+			model.put("demail", demail);
+			return "doctor-dashboard";	
+		}
+		return null;
+	}
+	
+	@GetMapping("/listOfAppointmentsToday")
+	public String todayAppointmentList(@RequestParam String demail, Map<String, List<AppointmentData>>model) {
+		List<AppointmentData> data = doctorService.todayAppointmentList(demail);
+		model.put("data", data);
+		return "doc-appointments";
 	}
 
 }

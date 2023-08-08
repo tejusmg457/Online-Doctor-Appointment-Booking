@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import in.ineuron.model.Customer;
 
+
 @Repository(value="customerRepo")
 public interface ICustomerRepo extends JpaRepository<Customer, String>{
 	
@@ -15,7 +16,4 @@ public interface ICustomerRepo extends JpaRepository<Customer, String>{
 	
 	@Query("SELECT cpassword FROM Customer where cemail=:n")
 	public String loginCustomer(@Param("n") String cemail);
-	
-	
-
 }

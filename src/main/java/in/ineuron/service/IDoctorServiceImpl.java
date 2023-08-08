@@ -1,15 +1,17 @@
 package in.ineuron.service;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import in.ineuron.dao.IAppointmentRepo;
 import in.ineuron.dao.ICustomerRepoForAppointment;
 import in.ineuron.dao.IDoctorRepo;
 import in.ineuron.model.AppointmentData;
-import in.ineuron.model.AppointmentStatus;
 import in.ineuron.model.Doctor;
 
 @Service(value="docterService")
@@ -33,8 +35,8 @@ public class IDoctorServiceImpl implements IDoctorService {
     @Override
     public List<AppointmentData> listOfPendingAppointments(String demail) {
     	String dname = doctorRepo.findDocName(demail);
-		List<AppointmentData> data = customerRepoforAppointment.findByDname(dname);
-		return data;
+    	List<AppointmentData> data =  customerRepoforAppointment.findPendingAppointments(dname, "Pending");
+    	return data;
     }
 
 	@Override
@@ -57,12 +59,44 @@ public class IDoctorServiceImpl implements IDoctorService {
 
 	@Override
 	public String approveAppointment(String appointmentId) {
-		System.out.println("IDoctorServiceImpl.approveAppointment()");
 		
 		int recordNo = appointmentStatusRepo.findRecordNo(appointmentId);
 		appointmentStatusRepo.updateAppointment(recordNo, "Visit clinic on date", "Approved");
 		return "approved";
-		
-	
+	}
+
+	@Override
+	public int noOfAppointmentsForToday() {
+		Date Todaydate = Date.valueOf(LocalDate.now());
+		int noOfAppointmentsToday = customerRepoforAppointment.noOfAppointmentsForToday(Todaydate);
+		return noOfAppointmentsToday;
+	}
+
+	@Override
+	public int noOfDoctors() {
+		int noOfDoctors = doctorRepo.noOfDocters();
+		return noOfDoctors;
+	}
+
+	@Override
+	public List<AppointmentData> findAppointments(Date fdate, Date tdate) {
+		System.out.println("IDoctorServiceImpl.findAppointments()");
+		List<AppointmentData> appointments = customerRepoforAppointment.findAppointments(fdate, tdate);
+		return appointments;
+	}
+
+	@Override
+	public String completeAppointment(String appointid) {
+		int recordNo = appointmentStatusRepo.findRecordNo(appointid);
+		appointmentStatusRepo.completeAppointment(recordNo, "Staysafe-Stayhealthy", "Completed");
+		return "completed";
+	}
+
+	@Override
+	public List<AppointmentData> todayAppointmentList(String demail) {
+		Date Todaydate = Date.valueOf(LocalDate.now());
+		String dname = doctorRepo.findDocName(demail);
+		List<AppointmentData> data = customerRepoforAppointment.todayAppointmentListToDoc(dname, Todaydate, "Approved");
+		return data;
 	}
 }

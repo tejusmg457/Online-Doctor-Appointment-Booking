@@ -22,4 +22,9 @@ public interface IAppointmentRepo extends JpaRepository<AppointmentStatus, Strin
 	@Modifying
 	@Query("UPDATE AppointmentStatus a SET a.message = :m, status = :s WHERE (totalrecords = :n)")
 	public void updateAppointment(@Param("n") int recordNo, @Param("m") String message, @Param("s") String status);
+
+
+	@Modifying
+	@Query("UPDATE AppointmentStatus a SET a.message = :m, status = :s WHERE (totalrecords = :n)")
+	public void completeAppointment(@Param("n") int recordNo, @Param("m") String message, @Param("s") String status);
 }

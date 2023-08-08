@@ -1,6 +1,7 @@
 package in.ineuron.controller;
 
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import in.ineuron.model.AppointmentData;
 import in.ineuron.model.Customer;
+import in.ineuron.service.IAppointmentService;
 import in.ineuron.service.ICustomerService;
 
 @Controller
@@ -22,6 +24,9 @@ public class CustomerController {
 	
     @Autowired
     private ICustomerService customerService;
+    
+    @Autowired
+    private IAppointmentService appointmentService;
     
     @PostMapping("/logincustomer")
     public String loginCustomer(@RequestParam String cemail, String cpassword) {
@@ -61,15 +66,13 @@ public class CustomerController {
         model.put("msg", msg);
         return "appointment-booking";
     }
-
-    @GetMapping("/AppoitmentStatus/{id}")
-    public String getStatusOfAppointment(@PathVariable String id){
-        return null;
-    }
     
-    @GetMapping("/track-appointment")
-    public String trackAppointment() {
-    	return "track-appointment-status";
+    @GetMapping("/getAppointmentStatus")
+    public String trackAppointment(@RequestParam String appointid, Map<String, Optional<AppointmentData>>model) {
+    	System.out.println("CustomerController.trackAppointment()");
+    	Optional<AppointmentData> data = appointmentService.getAppointmentStatusById(appointid);
+    	model.put("data", data);
+    	return "customer-dashboard";
     }
     
 }
