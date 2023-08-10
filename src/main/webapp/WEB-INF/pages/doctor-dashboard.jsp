@@ -35,5 +35,14 @@
   		 	 	<h1><%= info %> </h1> 
 		<%} %>	
 	</div>
+	<div>
+		<form action="Appointment-history">
+			<button name="demail" value="<%= demail %>">Appointment History</button>
+		</form>
+	</div>
+	
+		<form action="logout">
+		<button>Logout</button>
+	</form>
 </body>
 </html>

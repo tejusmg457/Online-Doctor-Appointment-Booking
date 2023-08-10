@@ -31,5 +31,11 @@ public interface IDoctorService {
     public String completeAppointment(@RequestParam String appointid);
     
     public List<AppointmentData> todayAppointmentList(String demail);
+    
+    public List<AppointmentData> appointmentHistory(String demail);
+    
+    public String[] verifyDocSpecialist(String dname);
+    
+    public String getPassword(String did, String demail);
 
 }

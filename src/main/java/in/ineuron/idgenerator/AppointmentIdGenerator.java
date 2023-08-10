@@ -27,13 +27,10 @@ public class AppointmentIdGenerator implements IdentifierGenerator {
 			while(rs1.next()) {
 				records = rs1.getInt(1);
 				records++;
-				System.out.println("AppointmentIdGenerator.generate()");
-				System.out.println(records);
 				LocalDate date = LocalDate.now();
 				int day = date.getDayOfMonth();
 				int month = date.getMonthValue();
 				id = "APP"+day+month+records;
-				System.out.println("final id is "+id);
 				return id;
 			}
 		} catch (SQLException e) {

@@ -19,9 +19,10 @@ import in.ineuron.model.Doctor;
 import in.ineuron.service.IAppointmentService;
 import in.ineuron.service.ICustomerServiceImpl;
 import in.ineuron.service.IDoctorServiceImpl;
+import io.swagger.annotations.ApiOperation;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("api/admin")
 public class AdminController {
 
     @Autowired 
@@ -34,6 +35,7 @@ public class AdminController {
     private IAppointmentService appointmentService;
     
     @PostMapping("/adminlogin")
+    @ApiOperation("admin login")
     public String verifyAdmin(@RequestParam String aname, String apassword, Map<String, Integer>model) {
     	if(aname.equalsIgnoreCase("admin") && apassword.equalsIgnoreCase("9844")) {
     		
@@ -51,27 +53,23 @@ public class AdminController {
     }
     
     @GetMapping("/doctor-registration")
+    @ApiOperation("show doctor registration form")
     public String docRegistration() {
     	return "doctor-registration";
     }
 
     @PostMapping("/save-doctor")
+    @ApiOperation("doctor registration")
     public String addDoctor(Map<String, String> model, @ModelAttribute("doctor") Doctor doctor){
-    	System.out.println("ENTERED SAVE-DOCTOR");
+    	System.out.println("AdminController.addDoctor()");
     	String msg = docterService.saveDocter(doctor); 
+    	System.out.println(msg);
         model.put("msg", msg);
         return "doctor-registration";
     }
-
-    @GetMapping("/noofcustomer")
-    public String noOfCustomers(Map<String, String> model){
-    	int records = customerService.noOfCustomers();
-    	String totalRecords = Integer.toString(records);
-     	model.put("totalRecords", totalRecords);
-     	return "admin-dashboard";
-    }
     
     @GetMapping("/listofdoctors")
+    @ApiOperation("list of doctors")
     public String listOfDoctors(@SuppressWarnings("rawtypes") Map<String, List>model){
     	List<Doctor> doctors = docterService.listOfDocters();
     	model.put("doctors", doctors);
@@ -79,21 +77,23 @@ public class AdminController {
     }
     
     @DeleteMapping("/delete-customer")
+    @ApiOperation("customer deletion")
     public String deleteCustomer(@RequestParam String cid, Map<String, String> model) {
     	String status = customerService.deleteCustomer(cid);
     	if(status.equalsIgnoreCase("yes")) {
     		String msg = "Customer "+ cid + " data deleted successfully ";
     		model.put("msg", msg);
-    		return "";
+    		return "redirect:/admin/adminlogin";
     	}
     	else {
     		String msg = "Customer "+ cid + " data can't be deleted ";
     		model.put("msg", msg);
-    		return "";
+    		return "redirect:/admin/adminlogin";
     	}
     }
     
     @GetMapping("/delete-doctor")
+    @ApiOperation("doctor deletion it internally calls from list of doctors")
     public String deleteDoctor(@RequestParam String did, Map<String, String> model) {
     	String msg = docterService.deleteDoctor(did);
     	model.put("msg", msg);
@@ -101,17 +101,25 @@ public class AdminController {
     }
     
     @GetMapping("/track-appointment")
+    @ApiOperation("track appointment here")
     public String trackAppointment(@RequestParam String apointid, Map<String,Optional<AppointmentData>>model) {
     	Optional<AppointmentData> data = appointmentService.getAppointmentStatusById(apointid);
     	model.put("data", data);
-    	return "admin-dashboard";
+    	return "display-appointment-status";
     }
     
     @GetMapping("/listofappointments")
+    @ApiOperation("list of appointments by selecting between two dates")
     public String getAppointments(@RequestParam Date fdate, Date tdate, Map<String, List<AppointmentData>> model){
     	System.out.println("AdminController.getAppointments()");
     	List<AppointmentData> appointments = docterService.findAppointments(fdate, tdate);
     	model.put("appointments", appointments);
     	return "dispay-appointments";
+    }
+    
+    @GetMapping("/logout")
+    @ApiOperation("lagout here")
+    public String logOut() {
+    	return "index";
     }
 }

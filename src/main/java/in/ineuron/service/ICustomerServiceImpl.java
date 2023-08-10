@@ -17,6 +17,7 @@ public class ICustomerServiceImpl implements ICustomerService{
 
     @Autowired
     private ICustomerRepo customerRepo;
+    
 
     @Autowired
     private ICustomerRepoForAppointment customerRepoforAppointment;
@@ -27,7 +28,6 @@ public class ICustomerServiceImpl implements ICustomerService{
 	@Override
 	public String loginCustomer(String cemail) {
 		String cdpassword = customerRepo.loginCustomer(cemail);
-		System.out.println(cdpassword);
 		return cdpassword;
 	}
 
@@ -61,12 +61,9 @@ public class ICustomerServiceImpl implements ICustomerService{
        appointmentStatus.setStatus("Pending");
        appointmentStatus.setMessage("Need to be approval from doctor end");
        appointmentStatus.setAppointmentData(appointmentData);
-       
-       
-   
+
        AppointmentData data = customerRepoforAppointment.save(appointmentData);
        appointmentStatusRepo.save(appointmentStatus);
-       System.out.println("saved data "+data);
        return  data.getAppointid();
 
     }
@@ -76,5 +73,19 @@ public class ICustomerServiceImpl implements ICustomerService{
 		int num = customerRepo.noOfCustomers();
 		return num;
 	}
-    //SELECT * FROM appointmentdata a inner join appointment_status s where a.appointid = s.appointmentid;
+
+	@Override
+	public String[] docNames() {
+		return customerRepo.docNames();
+	}
+
+	@Override
+	public String[] docSpecilist() {
+		return customerRepo.docSpecilist();
+	}
+
+	@Override
+	public String getPassword(String cid, String cemail) {
+		return customerRepo.getPassword(cid, cemail);
+	}
 }

@@ -8,8 +8,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="../customer/book-appointmentment">
+	<form action="../customer/book-appointment">
 		<button>Book appointment</button>
+	</form>
+	
+	<form action="../customer/logout">
+		<button>Logout</button>
 	</form>
 	
 	

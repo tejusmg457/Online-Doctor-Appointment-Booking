@@ -26,7 +26,10 @@
 				<tr>
 					<td>Gender</td> <td><select name="dspecialist">
 											<option>Gynocologist</option>
-										    <option>General</option>
+										    <option>Neurologist</option>
+										    <option>Psychiatrist</option>
+										    <option>Radiologist</option>
+										    <option>Dentist</option>
 										</select>
 									</td>
 				</tr>

@@ -16,8 +16,8 @@ public interface ICustomerRepoForAppointment extends JpaRepository<AppointmentDa
 	@Query(value = "SELECT appointid, pname, page, adate, psymptoms, dname, dspecialist FROM Appointmentdata a join appointment_status s where a.appointid = s.appointmentid and a.dname= :d and s.status= :s", nativeQuery = true)
 	public List<AppointmentData> findPendingAppointments(@Param ("d") String dname,@Param ("s") String Status);
 
-	@Query("SELECT COUNT(adate) from AppointmentData where adate = :n")
-	public int noOfAppointmentsForToday(@Param ("n") Date tdate);
+	@Query(value="SELECT count(*) FROM Appointmentdata a join appointment_status s where a.appointid = s.appointmentid  AND a.adate=:d AND s.status=:s", nativeQuery = true)
+	public int noOfAppointmentsForToday(@Param ("d") Date tdate, @Param ("s") String status);
 	
 	@Query(value="SELECT * from Appointmentdata where adate between :f and :t", nativeQuery = true)
 	public List<AppointmentData> findAppointments(@Param ("f") Date fdate, @Param ("t") Date tdate);
@@ -27,4 +27,9 @@ public interface ICustomerRepoForAppointment extends JpaRepository<AppointmentDa
 	
 	@Query(value = "SELECT * FROM Appointmentdata a join appointment_status s where a.appointid = s.appointmentid AND a.dname= :n AND a.adate=:d AND s.status=:s", nativeQuery = true)
 	public List<AppointmentData> todayAppointmentListToDoc(@Param ("n")String dname,@Param ("d") Date todayDate, @Param ("s") String status);
+
+	@Query(value = "SELECT * FROM Appointmentdata a join appointment_status s where a.appointid = s.appointmentid AND a.dname= :d", nativeQuery = true)
+	public List<AppointmentData> appointmentHistory(@Param ("d") String dname);
+
+
 }

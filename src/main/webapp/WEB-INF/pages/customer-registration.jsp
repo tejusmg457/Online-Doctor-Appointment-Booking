@@ -41,6 +41,13 @@
 			</table>
 			 <button>Submitt</button>
 		</form>
+		<%
+		String result =(String) request.getAttribute("msg"); 
+		 %> 
+		 <%
+		   	 if(result!=null){ %> 
+	  		  <h1>Customer registration successfull and id <%= result %> for your reference</h1> 
+		<%} %>	
 	</div>
 </body>
 </html>

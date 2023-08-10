@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import in.ineuron.dao.IAppointmentRepo;
 import in.ineuron.dao.ICustomerRepoForAppointment;
@@ -68,7 +67,7 @@ public class IDoctorServiceImpl implements IDoctorService {
 	@Override
 	public int noOfAppointmentsForToday() {
 		Date Todaydate = Date.valueOf(LocalDate.now());
-		int noOfAppointmentsToday = customerRepoforAppointment.noOfAppointmentsForToday(Todaydate);
+		int noOfAppointmentsToday = customerRepoforAppointment.noOfAppointmentsForToday(Todaydate, "Approved");
 		return noOfAppointmentsToday;
 	}
 
@@ -98,5 +97,23 @@ public class IDoctorServiceImpl implements IDoctorService {
 		String dname = doctorRepo.findDocName(demail);
 		List<AppointmentData> data = customerRepoforAppointment.todayAppointmentListToDoc(dname, Todaydate, "Approved");
 		return data;
+	}
+
+	@Override
+	public List<AppointmentData> appointmentHistory(String demail) {
+		String dname = doctorRepo.findDocName(demail);
+		List<AppointmentData> appointmentHistory = customerRepoforAppointment.appointmentHistory(dname);
+		return appointmentHistory;
+	}
+
+	@Override
+	public String[] verifyDocSpecialist(String dname) {
+		String[] dspecialist = doctorRepo.findDocSpecialist(dname); 
+		return dspecialist;
+	}
+
+	@Override
+	public String getPassword(String did, String demail) {
+		return doctorRepo.getPassword(did, demail);
 	}
 }

@@ -17,5 +17,9 @@
                 <button>Submit</button>
         </form>
     </div>
+     <div>
+    
+    		<form action="showforgotpasswordpage"><button>Forgot password</button></form>
+    </div>
 </body>
 </html>

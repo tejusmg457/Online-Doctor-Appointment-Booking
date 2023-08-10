@@ -16,13 +16,23 @@
 	<h3>No of Customers :: <%= noOfCustomers %></h3>
 	<h3>No of Doctors :: <%= noOfDoctors %></h3>
 	
+	<div>
 	<form action="../admin/doctor-registration">
 		<button>Doctor registration</button>
 	</form>
+	 <%
+		String result =(String) request.getAttribute("msg"); 
+	 %> 
+	 <%
+	   	 if(result!=null){ %> 
+  		  <h1>Doctor registered successfully and id :: <%= result %></h1> 
+	<%} %>
+	</div>
 	
 	<form action="../admin/listofdoctors">
 		<button>List of Doctors</button>
 	</form>
+	
 	
 	<div>
 		<h3>Get appointment List</h3>
@@ -37,6 +47,20 @@
 			</table>
 			<button>get Appointment list</button>
 		</form>
+	</div>
+	
+	<div>
+		<h3>Delete customer</h3>
+		<form action="../admin/delete-customer">
+			<input type="text" name="cid"><button>Delete</button>
+		</form>
+		<%
+		String deleteResult =(String) request.getAttribute("msg"); 
+		 %> 
+	 	<%
+	   	 	if(deleteResult!=null){ %> 
+  		  	<h1><%= deleteResult %></h1> 
+		<%} %>
 	</div>
 	
 	<div>
@@ -80,6 +104,10 @@
 				  
 			  <%} %>
 	</div>
+	
+	<form action="../admin/logout">
+		<button>Logout</button>
+	</form>
 	
 	
 </body>

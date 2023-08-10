@@ -14,11 +14,18 @@
                     <tr><td>Password</td><td><input type="password" name="cpassword"></td></tr>
                 </table>
                 <br>
-                <button>Submitt</button>
+                <button>Submit</button>
         </form>
     </div>
+    
+    <div>
+    
+    		<form action="customer/showforgotpasswordpage"><button>Forgot password</button></form>
+    </div>
+    
      <form action="customer/signup">
-    		<h3>New User ? <Button >Click Here</Button></h3>
+    		<h3>New User ? <a href="customer/signup">Register Here</a></h3>
     </form>
+    
 </body>
 </html>

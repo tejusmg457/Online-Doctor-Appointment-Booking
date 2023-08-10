@@ -12,7 +12,6 @@
 	<% String result = (String) request.getAttribute("result"); %>
 	<% String demail = (String) session.getAttribute("demail"); %>
 	<h1>Doc email is <%= demail %></h1>
-	
 	<% if(appointmentData.isEmpty() && true) {  %>
 		<h3> No appointments pending for approval </h3>
 	<% }
@@ -29,7 +28,7 @@
 					<td><%= data.getAdate() %></td>
 					<td><%= data.getPsymptoms() %></td>
 					<% session.setAttribute("demail", demail); %>
-					<td><form action="../approveAppointment"><button name="appointmentId" value="<%= data.getAppointid() %>">Approve</button></form></td>
+					<td><form action="./approveAppointment"><button name="appointmentId" value="<%= data.getAppointid() %>">Approve</button></form></td>
 					
 				</tr>
 			<% } %>

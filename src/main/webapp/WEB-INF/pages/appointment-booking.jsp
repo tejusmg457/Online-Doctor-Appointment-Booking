@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -9,6 +10,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<% String[] docNames = (String[]) request.getAttribute("docNames");%>
+	<% String[] docSpecialists = (String[]) request.getAttribute("docSpecialists"); %>
 	<h3>Book your appointment </h3>
 	<div>
 		<form action="../customer/BookAppointment" method="post">
@@ -31,16 +34,19 @@
 				
 				<tr>
 					<td>Doctor</td> <td><select name="dname">
-											<option>TEJAS</option>
-										    <option>TARUN</option>
+											<% if(docNames!=null){ 
+											for(int i=0; i<docNames.length; i++){ %>
+											<option><%= docNames[i] %></option>
+										  	<% }} %>
 										</select>
 									</td>
 				</tr>
 				
 				<tr>
-					<td>Gender</td> <td><select name="dspecialist">
-											<option>Gynocologist</option>
-										    <option>General</option>
+					<td>Doctor specialist</td> <td><select name="dspecialist">
+										<% if(docSpecialists!=null){for(int i=0; i<docSpecialists.length; i++){ %>
+											<option><%= docSpecialists[i] %></option>
+										 <% }} %>	
 										</select>
 									</td>
 				</tr>
@@ -54,7 +60,7 @@
 	 %> 
 	 <%
 	   	 if(result!=null){ %> 
-  		  <h1>Appointment booked successfully and id :: <%= result %> for your reference</h1> 
+  		  <h1><%= result %></h1> 
 	<%} %>		
 </body>
 </html>
