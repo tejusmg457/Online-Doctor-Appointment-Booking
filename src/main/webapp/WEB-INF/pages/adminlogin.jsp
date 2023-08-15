@@ -6,17 +6,83 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
+<style>
+
+    *{
+        margin: 0px;
+        padding: 0px;
+        font-family: 'Baloo Bhai', cursive;
+        background-color: lightyellow;
+    }
+    .whole{
+        position: absolute;
+        top: 200px;
+    }
+    form{   
+        align-items: center;
+        border: 20px;
+        border-color: white; 
+    }
+    .table{
+        margin-left: 500px;
+        padding-top: 50px;
+        padding-bottom: 100px;
+        padding-right: 60px;
+        padding-left: 30px;
+        background-color: plum;  
+        border-radius: 25px;
+        box-shadow: 10px 10px 10px 10px lightgray;
+    }
+    td{   
+        padding:10px;
+        font-weight: bold;
+        color: blue;
+        background-color: plum;       
+    }
+    th {
+        position: absolute;
+       	top: 15px;
+        color: tomato;
+        margin-left: 50px; 
+      
+    }
+    h3{
+        background-color: plum;
+    }
+    .whole  #submit{
+        position: absolute;
+        padding: 10px;
+        top: 160px; margin-left: 580px;
+        font-weight: bolder; color: seagreen;
+    }
+
+    .whole  #forgot{
+        position: absolute;
+        padding: 10px;
+        top: 160px; margin-left: 700px;
+        font-weight: bold; color: seagreen;
+    }
+
+</style>
 <body>
-	    <div>
+ 
+  <%@ include file="./header.jsp" %>
+
+    <div class="whole">
         <form action="admin/adminlogin" method="post">
-        
-                <table>
-                    <tr><td>Username</td><td><input type="text" name="aname"></td></tr>
-                    <tr><td>Password</td><td><input type="password" name="apassword"></td></tr>
+            
+                <table class="table"> 
+                    <th><h3>Admin login</h3></th>
+                    <tr><td>Username:</td><td><input type="text" name="aname"></td></tr>
+                    <tr><td>Password:</td><td><input type="password" name="apassword"></td></tr>
                 </table>
-                <br>
-                <button>Submitt</button>
+                <button id="submit">Submit</button>
+                <br>         
         </form>
+        <div>
+    		<form action="api/customer/showforgotpasswordpage"><button id="forgot">Forgot password</button></form>
+        </div>
+    
     </div>
 </body>
 </html>

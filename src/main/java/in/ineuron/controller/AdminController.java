@@ -7,7 +7,6 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -63,7 +62,6 @@ public class AdminController {
     public String addDoctor(Map<String, String> model, @ModelAttribute("doctor") Doctor doctor){
     	System.out.println("AdminController.addDoctor()");
     	String msg = docterService.saveDocter(doctor); 
-    	System.out.println(msg);
         model.put("msg", msg);
         return "doctor-registration";
     }
@@ -76,7 +74,7 @@ public class AdminController {
     	return "display-doctors";
     }
     
-    @DeleteMapping("/delete-customer")
+    @GetMapping("/delete-customer")
     @ApiOperation("customer deletion")
     public String deleteCustomer(@RequestParam String cid, Map<String, String> model) {
     	String status = customerService.deleteCustomer(cid);
@@ -122,4 +120,5 @@ public class AdminController {
     public String logOut() {
     	return "index";
     }
+   
 }

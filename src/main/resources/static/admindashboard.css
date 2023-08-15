@@ -1,0 +1,163 @@
+@charset "ISO-8859-1";
+*{
+	margin:0px;
+	padding: 0px;
+	
+}
+body{background-color: lightcyan;}
+
+h2{
+	background-color: grey;
+	padding: 10px;
+	color:cyan;
+	font-weight: bold;
+	text-align: center;
+}
+
+.appointment{
+	position:absolute;
+	display: inline-block;
+	top:175px;
+	margin-left:150px;
+	padding: 15px;
+	background-color: lightyellow;
+	border: 2px solid ;
+	box-shadow: 10px 10px 10px silver;
+}
+
+.appointment h3{
+	color: darkblue;
+	background-color: inherit;
+}
+.appointment h1{
+	text-align: center;
+	color: darkblue;
+	background-color: inherit;
+}
+
+.customer{
+	position:absolute;
+	display: inline-block;
+	top:175px;
+	margin-left: 450px;
+	padding: 15px;
+	background-color: lightyellow;
+	border: 2px solid ;
+	box-shadow: 10px 10px 10px silver;
+}
+
+.customer h3{
+	color: darkblue;
+	background-color: inherit;
+}
+.customer h1{
+	text-align: center;
+	color: darkblue;
+	background-color: inherit;
+}
+
+.Doctors{
+	position:absolute;
+	display: inline-block;
+	top:175px;
+	margin-left: 750px;
+	padding: 15px;
+	background-color: lightyellow;
+	border: 2px solid ;
+	box-shadow: 10px 10px 10px silver;
+}
+
+.Doctors h3{
+	color: darkblue;
+	background-color: inherit;
+}
+.Doctors h1{
+	text-align: center;
+	color: darkblue;
+	background-color: inherit;
+}
+
+.logout button{
+	position:absolute; top:157px; margin-left: 1200px; background-color: lightyellow; box-shadow: 10px 10px 10px silver;
+	padding:20px;
+	font-size:large;
+	font-weight: bold;
+	color:darkblue;	
+}
+
+.docreg{
+	position: absolute;  top: 315px; background-color: lightgreen;
+    margin-left: 35px;
+    color: darkblue; font-weight: bold; border: 2px solid peachpuff;
+    padding: 14px;
+    box-shadow: 10px 10px 10px silver;
+       
+}
+
+.doctorList{
+	position: absolute;  top: 395px; background-color: lightgreen;
+    margin-left: 45px;
+    color: darkblue; font-weight: bold; border: 2px solid peachpuff; 
+    padding: 14px;
+    box-shadow: 10px 10px 10px silver;
+}
+
+.appointList{
+	position: absolute;  top: 480px; background-color: lightgreen; box-shadow: 10px 10px 10px silver;
+	margin-left: 45px; height: 225px;
+}
+
+.appointList .appointListTable{
+	padding:30px;
+}
+
+.appointList .appointListTable td{
+	padding:10px;
+}
+
+.appointList h3{
+	margin-top: 10px;
+	text-align:center; 	font-weight: bold; color: darkblue;	
+}
+
+.listdocsubbutton{
+	position: absolute; padding: 10px;
+    margin-left: 90px;  top: 165px; 
+}
+
+.deletecustomer{
+	position: absolute;  top: 350px; height:110px; background-color: lightgreen;
+    margin-left: 400px;
+    color: darkblue; font-weight: bold; border: 2px solid peachpuff; 
+    padding: 14px;
+    box-shadow: 10px 10px 10px silver;
+}
+
+.deletecustomer .form input{
+	padding:10px;	
+}
+	
+.deletecustomer .form button{
+	margin-top:10px; padding: 10px; margin-left: 10px; color: red; font-weight: bold;
+}
+
+.deletecustomer h3{text-align:center; margin-top:3px; }
+.deletecustomer h4{text-align:center; color:red }
+
+.track{
+	position: absolute;  top: 510px; height:85px; background-color: lightgreen;
+    margin-left: 400px;
+    color: darkblue; font-weight: bold; border: 2px solid peachpuff; 
+    padding: 14px;
+    box-shadow: 10px 10px 10px silver;
+}
+
+.track .form input{
+	padding:10px; margin-top:10px;	
+}
+
+.track .form button{
+	margin-top:10px; padding: 10px; margin-left: 10px; color: green; font-weight: bold;
+}
+
+.track h3{text-align:center; margin-top:3px }
