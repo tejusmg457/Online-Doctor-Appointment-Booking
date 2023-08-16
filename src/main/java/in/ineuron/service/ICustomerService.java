@@ -21,6 +21,8 @@ public interface ICustomerService {
     public String[] docSpecilist();
     
     public String getPassword(String cid, String cemail);
+    
+    public String getCustomerName(String cemail);
 
     
 }

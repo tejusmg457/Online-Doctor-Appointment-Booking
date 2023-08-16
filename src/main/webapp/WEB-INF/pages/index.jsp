@@ -43,7 +43,7 @@
     </div>
     
     <footer>
-    	<h3>Design and development by TEJAS || iNeuron.ai</h3>
+    	<h3> &copy; Design and development by TEJAS || iNeuron.ai</h3>
     </footer>
 </body>
 </html>

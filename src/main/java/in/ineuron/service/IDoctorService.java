@@ -37,5 +37,7 @@ public interface IDoctorService {
     public String[] verifyDocSpecialist(String dname);
     
     public String getPassword(String did, String demail);
+    
+    public String getDoctorName(String demail);
 
 }

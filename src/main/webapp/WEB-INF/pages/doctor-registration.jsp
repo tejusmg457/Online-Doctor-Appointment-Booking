@@ -5,10 +5,43 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Doctor registration</title>
+<style>
+*{
+	padding: 0px; margin: 0px; 
+}
+body{background-color: lightyellow;}
+.mydiv{    
+	height: 445px;
+    width: 550px;
+    background-color: cadetblue;
+    top: 165px;
+    position: absolute;
+    margin-left: 496px;
+    border-radius: 65px;
+}
+
+table{
+	height: 200px; width: 500px; 
+	margin-left: 60px; margin-top: 48px;
+}
+table td{padding:10px}
+option{padding:10px;}
+.register{padding:10px; background-color: lightcyan; font-weight: bold;     margin-left: 225px; margin-top: 10px;}
+#h1{ font-weight: bold; color: blue; text-align: center; margin-top: 25px;}
+#result{ 
+	position: absolute;
+    top: 535px;
+    padding: 10px;
+    margin-left: 545px;
+    color: floralwhite;
+    font-weight: bold;}
+</style>
 </head>
 <body>
-	<div>
+	<%@ include file="./header.jsp" %>
+	<h1 id="h1">Doctor registration</h1>
+	<div class="mydiv">
 			<form action="save-doctor" method = "post"> 
 			<table>
 				<tr>
@@ -24,7 +57,7 @@
 				</tr>
 						
 				<tr>
-					<td>Gender</td> <td><select name="dspecialist">
+					<td>Specilist</td> <td><select name="dspecialist">
 											<option>Gynocologist</option>
 										    <option>Neurologist</option>
 										    <option>Psychiatrist</option>
@@ -46,7 +79,7 @@
 					<td>Doctor Password</td><td><input type="password" name="dpassword"></input></td>
 				</tr>
 			</table>
-			 <button>Submit</button>
+			 <button class="register">register</button>
 			</form>
 	</div>
 		
@@ -55,7 +88,9 @@
 	 %> 
 	 <%
 	   	 if(result!=null){ %> 
-  		  <h1>Doctor registered successfully and id :: <%= result %></h1> 
-	<%} %>		 
+  		  <h4 id="result">Doctor registered successfully and id <%= result %> for reference</h4> 
+	<%} %>	
+	
+	<%@ include file="./footer.jsp" %>	 
 </body>
 </html>

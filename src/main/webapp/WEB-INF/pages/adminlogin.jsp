@@ -12,8 +12,9 @@
         margin: 0px;
         padding: 0px;
         font-family: 'Baloo Bhai', cursive;
-        background-color: lightyellow;
+        
     }
+    .body{background-color: lightyellow;}
     .whole{
         position: absolute;
         top: 200px;
@@ -46,7 +47,7 @@
         margin-left: 50px; 
       
     }
-    h3{
+    #h3{
         background-color: plum;
     }
     .whole  #submit{
@@ -64,7 +65,7 @@
     }
 
 </style>
-<body>
+<body class="body">
  
   <%@ include file="./header.jsp" %>
 
@@ -72,7 +73,7 @@
         <form action="admin/adminlogin" method="post">
             
                 <table class="table"> 
-                    <th><h3>Admin login</h3></th>
+                    <th><h3 id="h3">Admin login</h3></th>
                     <tr><td>Username:</td><td><input type="text" name="aname"></td></tr>
                     <tr><td>Password:</td><td><input type="password" name="apassword"></td></tr>
                 </table>
@@ -84,5 +85,7 @@
         </div>
     
     </div>
+    
+    <%@ include file="./footer.jsp" %>
 </body>
 </html>

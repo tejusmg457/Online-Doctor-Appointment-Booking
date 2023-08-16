@@ -13,11 +13,10 @@
             padding:0px;
         }
         header{
-            background-color: #5d6a81;
-            width: 100%;
-            height: 85px;
+            background-color: #5d6a81 !important;
+            width: 100% !important;
+            height: 85px !important;
         }
-
         .left h3{
             color: greenyellow;
             font-weight: bold;

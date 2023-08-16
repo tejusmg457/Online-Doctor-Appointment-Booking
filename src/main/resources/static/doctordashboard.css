@@ -1,0 +1,108 @@
+@charset "ISO-8859-1";
+*{
+	margin:0px;
+	padding: 0px;
+}
+body{background-color: lightcyan;}
+
+#ribbon{
+	padding: 10px;
+	color:cyan;
+	font-weight: bold;
+	background-color: grey;
+	padding-left: 555px;
+}
+
+
+.wish #wishMsg{
+	color: navy;
+	position:absolute;
+	top: 85px;
+    left: 1255px;
+}
+
+.wish #name{
+	color: navy;
+    position: absolute;
+    top: 109px;
+    left: 1255px;
+    font-weight: bolder;
+}
+
+.logout{
+	position: absolute;
+    padding: 10px;  padding-left: 15px; padding-right: 15px;
+    top: 90px;  left: 1435px;
+    color: seashell; font-weight: bold;
+    background-color: black;
+}
+
+.appointmentList{
+	position: absolute;
+    padding: 25px;
+    background-color: yellowgreen;
+    font-weight: bold;
+    box-shadow: 10px 10px 10px silver;
+    top: 220px;
+    left: 200px;
+}
+
+.appointmentToday{
+	position: absolute;
+    padding: 25px;
+    background-color: yellowgreen;
+    font-weight: bold;
+    box-shadow: 10px 10px 10px silver;
+    top: 220px;
+    left: 645px;
+}
+
+.appointmenthistory{
+	position: absolute;
+    padding: 25px;
+    background-color: yellowgreen;
+    font-weight: bold;
+    box-shadow: 10px 10px 10px silver;
+    top: 220px;
+    left: 1090px;
+} 
+
+.completemain{
+	position: absolute;
+    height: 170px;
+    width: 400px;
+    background-color: yellowgreen;
+    top: 370px;
+    left: 200px;
+    box-shadow: 10px 10px 10px silver;
+    border: 2px solid black;
+}
+
+.completemain input{
+	padding:10px;
+	margin-top:20px;
+	margin-left: 25px;
+	
+}
+.completemain #h3{
+	display:inline-block;
+	margin-top: 15px;
+	margin-left:95px;
+	text-align: center;
+	color:black; font-weight: bold;
+}
+.completemain .completebutton{
+	padding: 10px;
+    background-color: dimgray;
+    font-weight: bold;
+    color: black;
+    margin-left: 25px;
+    box-shadow: 5px 5px 5px darkolivegreen;
+} 
+
+#msg{
+	margin-left: 65px;
+    color: blue;
+    font-weight: bold;
+    margin-top: 15px;
+}

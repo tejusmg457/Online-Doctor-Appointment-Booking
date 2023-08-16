@@ -116,4 +116,9 @@ public class IDoctorServiceImpl implements IDoctorService {
 	public String getPassword(String did, String demail) {
 		return doctorRepo.getPassword(did, demail);
 	}
+
+	@Override
+	public String getDoctorName(String demail) {
+		return doctorRepo.findDocName(demail);
+	}
 }

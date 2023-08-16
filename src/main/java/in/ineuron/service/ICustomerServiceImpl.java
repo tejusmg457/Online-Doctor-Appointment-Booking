@@ -88,4 +88,9 @@ public class ICustomerServiceImpl implements ICustomerService{
 	public String getPassword(String cid, String cemail) {
 		return customerRepo.getPassword(cid, cemail);
 	}
+
+	@Override
+	public String getCustomerName(String cemail) {
+		return customerRepo.getCustomerName(cemail);
+	}
 }

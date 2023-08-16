@@ -103,15 +103,18 @@ public class AdminController {
     public String trackAppointment(@RequestParam String apointid, Map<String,Optional<AppointmentData>>model) {
     	Optional<AppointmentData> data = appointmentService.getAppointmentStatusById(apointid);
     	model.put("data", data);
+    	
     	return "display-appointment-status";
     }
     
     @GetMapping("/listofappointments")
     @ApiOperation("list of appointments by selecting between two dates")
-    public String getAppointments(@RequestParam Date fdate, Date tdate, Map<String, List<AppointmentData>> model){
+    public String getAppointments(@RequestParam Date fdate, Date tdate, Map<String, Object> model){
     	System.out.println("AdminController.getAppointments()");
     	List<AppointmentData> appointments = docterService.findAppointments(fdate, tdate);
     	model.put("appointments", appointments);
+    	model.put("fdate", fdate);
+    	model.put("tdate", tdate);
     	return "dispay-appointments";
     }
     
@@ -120,5 +123,4 @@ public class AdminController {
     public String logOut() {
     	return "index";
     }
-   
 }

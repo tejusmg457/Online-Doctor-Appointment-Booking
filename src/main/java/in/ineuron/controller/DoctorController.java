@@ -28,8 +28,9 @@ public class DoctorController {
 	HttpServletRequest req;
 	
 	@GetMapping("/doctor-login")
-	@ApiOperation("doctor logon page display")
-	public String doctorLoginPage() {
+	@ApiOperation("doctor login page display")
+	public String doctorLoginPage(Map<String, String> model) {
+		model.put("msg", "Invalid");
 		return "doctorlogin";
 	}
 	
@@ -38,12 +39,12 @@ public class DoctorController {
 	public String loginDocter(@RequestParam String demail, String dpassword, Map<String, String>model) {
 		String dbpassword = doctorService.loginDoctor(demail);
 		if(dpassword.equalsIgnoreCase(dbpassword)) {
+			String dname = doctorService.getDoctorName(demail);
 			model.put("demail", demail);
+			model.put("dname", dname);
 			return "doctor-dashboard";
 		}else {
-			String msg = "Login failed";
-			model.put("msg",msg);
-			return "redirect:/doctor/doctor-login";
+			return "redirect:/api/doctor/doctor-login";
 		}		
 	}
 	
@@ -66,7 +67,7 @@ public class DoctorController {
 		if(msg.equalsIgnoreCase("approved")) {
 			String result = "Appointment approved for the ID :: "+appointmentId;
 			model.put("result", result);
-			String path = "redirect:/doctor/listOfPendingAppointments/?demail="+demail;
+			String path = "redirect:/api/doctor/listOfPendingAppointments/?demail="+demail;
 			return path;
 		}
 		return "failure";
@@ -126,7 +127,7 @@ public class DoctorController {
     @GetMapping("/logout")
     @ApiOperation("doctor can logout here")
     public String logOut() {
-    	return "index";
+    	return "doctorlogin";
     }
 
 }

@@ -25,7 +25,7 @@ public class GeneralController {
 	@GetMapping("/doctorlogin")
 	@ApiOperation("To get doctor login page")
 	public String docterlogin() {
-		return "docterlogin";
+		return "doctorlogin";
 	}
 	
 	

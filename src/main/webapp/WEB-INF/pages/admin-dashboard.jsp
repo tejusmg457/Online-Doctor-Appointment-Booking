@@ -35,7 +35,7 @@
 	</div>
 	
 	<div class="options">
-				<a href=".../pages/doctor-registration.jsp"><button class="docreg">Doctor registration</button></a>
+				<a href="../admin/doctor-registration"><button class="docreg">Doctor registration</button></a>
 	</div>
 	
 	<div>
@@ -80,59 +80,6 @@
 		</form>
 	</div>
 	
-	<div>
-			<%
-				Optional<AppointmentData> appointment = (Optional<AppointmentData>) request.getAttribute("data");
-			%>
-			<%if(appointment!=null){ %>
-					<table>
-						<tr>
-							<td>Appointment Id </td><td><%= appointment.get().getAppointid() %></td>
-						</tr>	
-						<tr>
-							<td>Patient name </td><td><%= appointment.get().getAppointid() %></td>
-						</tr>
-						<tr>
-							<td>Patient Age </td><td><%= appointment.get().getPage() %></td>
-						</tr>
-						<tr>
-							<td>Appointment Date</td><td><%= appointment.get().getAdate() %></td>
-						</tr>
-						<tr>
-							<td>Symptoms</td><td><%= appointment.get().getPsymptoms()%></td>
-						</tr>
-						<tr>
-							<td>Consulting-Doctor</td><td><%= appointment.get().getDname() %></td>
-						</tr>
-						<tr>
-							<td>Doc specialist in</td><td><%= appointment.get().getDspecialist() %></td>
-						</tr>
-						<tr>
-							<td>Status of appointment</td><td><%= appointment.get().getAppointmentStatus().getStatus() %></td>
-						</tr>
-				  </table>
-			 <%}else{ %>
-				  
-		  <%} %>
-	</div>
-	
-<%-- 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div>
-			
-	 --%>
-	
-	
-	
+	<%@ include file="./footer.jsp" %>
 </body>
 </html>

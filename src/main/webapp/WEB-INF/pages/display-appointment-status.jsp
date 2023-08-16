@@ -6,40 +6,37 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>List of doctors</title>
+<title>Appointment status</title>
+<style>
+	*{margin:0px; display:0px;}
+	body{background-color: lightcyan;}
+	#h3 {text-align:center; font-weight: bold; margin-top: 25px; color:blue;}
+	table{ border:2px solid black; background-color: lightyellow; margin-left: 220px; margin-top: 25px; box-shadow: 10px 10px 10px silver;}
+	table th{ padding:10px; color:navy; font-weight: bold; text-align:center;}
+	table td{padding:10px; text-align:center;}
+	#status{ font-weight: bolder; }
+</style>
 </head>
 <body>
-<h3>this is appointment status</h3>
+	<%@ include file="./header.jsp" %>
 	<%
 		Optional<AppointmentData> appointment = (Optional<AppointmentData>) request.getAttribute("data");
 		String status = appointment.get().getAppointmentStatus().getStatus();	
 	%>
-	
+	<h3 id="h3">Tracking details for appointment Id <%= appointment.get().getAppointid() %> is</h3>
 	<table>
+			<th>Appointment Id</th><th>Patient name</th><th>Patient Age</th><th>Appointment date</th><th>Symptoms</th><th>Consulting-Doctor</th><th>Doctor specialist in</th><th>Status of appointment</th>
 			<tr>
-				<td>Appointment Id </td><td><%= appointment.get().getAppointid() %></td>
-			</tr>	
-			<tr>
-				<td>Patient name </td><td><%= appointment.get().getAppointid() %></td>
-			</tr>
-			<tr>
-				<td>Patient Age </td><td><%= appointment.get().getPage() %></td>
-			</tr>
-			<tr>
-				<td>Appointment Date</td><td><%= appointment.get().getAdate() %></td>
-			</tr>
-			<tr>
-				<td>Symptoms</td><td><%= appointment.get().getPsymptoms()%></td>
-			</tr>
-			<tr>
-				<td>Consulting-Doctor</td><td><%= appointment.get().getDname() %></td>
-			</tr>
-			<tr>
-				<td>Doc specialist in</td><td><%= appointment.get().getDspecialist() %></td>
-			</tr>
-			<tr>
-				<td>Status of appointment</td><td><%= status %></td>
+				<td><%= appointment.get().getAppointid() %></td>
+				<td><%= appointment.get().getPname() %></td>
+				<td><%= appointment.get().getPage() %></td>
+				<td><%= appointment.get().getAdate() %></td>
+				<td><%= appointment.get().getPsymptoms()%></td>
+				<td><%= appointment.get().getDname() %></td>
+				<td><%= appointment.get().getDspecialist() %></td>
+				<td id="status"><%= status %></td>
 			</tr>
 	</table>
+	<%@ include file="./footer.jsp" %>
 </body>
 </html>

@@ -39,10 +39,12 @@ public class CustomerController {
     
     @PostMapping("/logincustomer")
     @ApiOperation("customer login")
-    public String loginCustomer(@RequestParam String cemail, String cpassword) {
+    public String loginCustomer(@RequestParam String cemail, String cpassword, Map<String, String>model) {
     	String cdpassword = customerService.loginCustomer(cemail);	
-    	if(cpassword.equalsIgnoreCase(cdpassword))
+    	if(cpassword.equalsIgnoreCase(cdpassword)) {
+    		model.put("dname", customerService.getCustomerName(cemail));
     		return "customer-dashboard";
+    	}
     	else 
     		return "failure";
     }

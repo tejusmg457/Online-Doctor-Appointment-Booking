@@ -86,8 +86,8 @@ h2{
 }
 
 .docreg{
-	position: absolute;  top: 315px; background-color: lightgreen;
-    margin-left: 35px;
+	position: absolute;  top: 400px; background-color: lightgreen;
+    margin-left:950px;
     color: darkblue; font-weight: bold; border: 2px solid peachpuff;
     padding: 14px;
     box-shadow: 10px 10px 10px silver;
@@ -95,16 +95,16 @@ h2{
 }
 
 .doctorList{
-	position: absolute;  top: 395px; background-color: lightgreen;
-    margin-left: 45px;
+	position: absolute;  top: 500px; background-color: lightgreen;
+    margin-left: 960px;
     color: darkblue; font-weight: bold; border: 2px solid peachpuff; 
     padding: 14px;
     box-shadow: 10px 10px 10px silver;
 }
 
 .appointList{
-	position: absolute;  top: 480px; background-color: lightgreen; box-shadow: 10px 10px 10px silver;
-	margin-left: 45px; height: 225px;
+	position: absolute;  top: 375px; background-color: lightgreen; box-shadow: 10px 10px 10px silver;
+	margin-left: 85px; height: 225px;
 }
 
 .appointList .appointListTable{
@@ -126,8 +126,8 @@ h2{
 }
 
 .deletecustomer{
-	position: absolute;  top: 350px; height:110px; background-color: lightgreen;
-    margin-left: 400px;
+	position: absolute;  top: 360px; height:110px; background-color: lightgreen;
+    margin-left: 515px;
     color: darkblue; font-weight: bold; border: 2px solid peachpuff; 
     padding: 14px;
     box-shadow: 10px 10px 10px silver;
@@ -145,8 +145,8 @@ h2{
 .deletecustomer h4{text-align:center; color:red }
 
 .track{
-	position: absolute;  top: 510px; height:85px; background-color: lightgreen;
-    margin-left: 400px;
+	position: absolute;  top: 530px; height:85px; background-color: lightgreen;
+    margin-left: 515px;
     color: darkblue; font-weight: bold; border: 2px solid peachpuff; 
     padding: 14px;
     box-shadow: 10px 10px 10px silver;

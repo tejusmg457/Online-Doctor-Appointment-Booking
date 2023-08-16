@@ -24,4 +24,7 @@ public interface ICustomerRepo extends JpaRepository<Customer, String>{
 	
 	@Query(value="SELECT cpassword FROM Customer where cid=:i AND cemail=:e", nativeQuery = true)
 	public String getPassword(@Param ("i")String cid, @Param("e")String cemail);
+	
+	@Query(value="SELECT cname FROM Customer where cemail=:e", nativeQuery = true)
+	public String getCustomerName(@Param("e")String cemail);
 }

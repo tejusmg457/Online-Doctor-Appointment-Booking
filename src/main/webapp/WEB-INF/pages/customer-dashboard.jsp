@@ -1,6 +1,6 @@
 <%@page import="in.ineuron.model.AppointmentData"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%> <%@ page import="java.util.Optional" %>
+	pageEncoding="ISO-8859-1"%> <%@ page import="java.util.Optional"%> <%@ page import="java.time.LocalDateTime"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,17 +8,39 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="../customer/book-appointment">
-		<button>Book appointment</button>
-	</form>
+	
+	<%@ include file="./header.jsp" %>
+	
+	<%String cname = (String) request.getAttribute("dname");
+	int hour = LocalDateTime.now().getHour();
+	String wish=null;
+	if(hour<12)
+		wish="Good morning!";
+	else if(hour<16)
+		wish="Good afternoon!";
+	else
+		wish="Good evening";
+	%>
+	<h2 id="ribbon">Customer Dashboard</h2>
+	
+	<div class="wish">
+		<h3 id="wishMsg"><%= wish %></h3>
+		<h3 id="name"><%= cname.toUpperCase() %></h3>
+	</div>
 	
 	<form action="../customer/logout">
 		<button>Logout</button>
 	</form>
 	
+	<form action="../customer/book-appointment">
+		<button class="logout">Book appointment</button>
+	</form>
 	
 	
-	<div>
+	
+	
+	
+	<%-- <div>
 		<h3>Find your appointment status here</h3>
 		
 		<div>
@@ -62,7 +84,9 @@
 			 <%}else{ %>
 				  
 			  <%} %>
-	</div>		
+	</div>		 --%>
+	
+	<%@ include file="./footer.jsp" %>
 </body>
 </html>
 

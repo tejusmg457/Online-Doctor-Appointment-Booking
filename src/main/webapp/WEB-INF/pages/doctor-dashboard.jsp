@@ -1,48 +1,71 @@
+<%@page import="java.time.LocalDateTime"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Doctor dashboard</title>
+ <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/doctordashboard.css">
 </head>
 <body>
-	<%String demail = (String) request.getAttribute("demail"); %>
-	<h1>doctor dashboard</h1>
-	<h3>Welcome Doctor <%= demail %></h3>
-	<% session.setAttribute("demail", demail); %>
+
+	<%@ include file="./header.jsp" %>
+	
+	
+	<%String demail = (String) request.getAttribute("demail");
+	String dname = (String) request.getAttribute("dname"); 
+	session.setAttribute("demail", demail); 
+	session.setAttribute("dname", dname); 
+	
+	int hour = LocalDateTime.now().getHour();
+	String wish=null;
+	if(hour<12)
+		wish="Good morning!";
+	else if(hour<16)
+		wish="Good afternoon!";
+	else
+		wish="Good evening";
+	%>
+	<h2 id="ribbon">Doctor Dashboard</h2>
+	
+	<div class="wish">
+		<h3 id="wishMsg"><%= wish %></h3>
+		<h3 id="name">Docter. <%= dname.toUpperCase() %></h3>
+	</div>
+	
+	<form action="logout">
+		<button class="logout">Logout</button>
+	</form>
 	
 	<div>
-		<form action="listOfPendingAppointments" method="get"><button name="demail" value="<%= demail %>">List of Appointments</button></form>
+		<form action="listOfPendingAppointments" method="get"><button class="appointmentList" name="demail" value="<%= demail %>"><h3>List of Appointments</h3></button></form>
 	</div>
 	
 	<div>
-		<form action="listOfAppointmentsToday" ><button name="demail" value="<%= demail %>">Today appointment List</button></form>
+		<form action="listOfAppointmentsToday" ><button class="appointmentToday" name="demail" value="<%= demail %>">Today's appointment List</button></form>
 	</div>
 	
 	<div>
-		<h3>Complete appointment</h3>
-		<form action="complete-appointment" method="post">
-			<input type="text" name="appointid"><button>Completed</button>
+		<form action="Appointment-history">
+			<button class="appointmenthistory" name="demail" value="<%= demail %>">Appointment History</button>
 		</form>
 	</div>
-	<div>
+	
+	<div class="completemain">
+		<h3 id="h3">Complete appointment</h3>
+		<form action="complete-appointment" method="post">
+			<input type="text" placeholder="Enter Appointment Id" name="appointid"><button class="completebutton">Complete</button>
+		</form>
+	
 		 <%
 			String info =(String) request.getAttribute("info"); 
 		 %> 
 		 <%
 	   	 	if(info!=null){ %> 
-  		 	 	<h1><%= info %> </h1> 
+  		 	 	<h4 id="msg"><%= info %> </h4> 
 		<%} %>	
 	</div>
-	<div>
-		<form action="Appointment-history">
-			<button name="demail" value="<%= demail %>">Appointment History</button>
-		</form>
-	</div>
-	
-		<form action="logout">
-		<button>Logout</button>
-	</form>
+	<%@ include file="./footer.jsp" %>
 </body>
 </html>
