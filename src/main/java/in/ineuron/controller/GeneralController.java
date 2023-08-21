@@ -34,5 +34,10 @@ public class GeneralController {
 	public String customerlogin() {
 		return "customerlogin";
 	}
+	
+	@GetMapping("/header")
+	public String headerPage() {
+		return "header";
+	}
 
 }

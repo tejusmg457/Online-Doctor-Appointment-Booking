@@ -31,5 +31,8 @@ public interface ICustomerRepoForAppointment extends JpaRepository<AppointmentDa
 	@Query(value = "SELECT * FROM Appointmentdata a join appointment_status s where a.appointid = s.appointmentid AND a.dname= :d", nativeQuery = true)
 	public List<AppointmentData> appointmentHistory(@Param ("d") String dname);
 
+	@Query(value="SELECT COUNT(*) FROM Appointmentdata where dname=:n AND dspecialist=:s AND adate=:d", nativeQuery=true)
+	public int checkSlot(@Param ("n") String dname,@Param ("s") String dspecialist,@Param ("d") Date sdate);
+
 
 }

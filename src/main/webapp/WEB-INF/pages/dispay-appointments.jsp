@@ -10,9 +10,10 @@
 	*{margin:0px; display:0px;}
 	body{background-color: lightcyan;}
 	#appointlist {text-align:center; font-weight: bold; margin-top: 25px; color:blue;}
-	table{ border:2px solid black; background-color: lightyellow; margin-left: 185px; margin-top: 25px; box-shadow: 10px 10px 10px silver;}
+	table{ border:2px solid black; background-color: lightyellow; margin-left: 185px; margin-top: 25px; box-shadow: 10px 10px 10px silver; margin-bottom: 25px;}
 	table th{ padding:10px; color:navy; font-weight: bold;}
 	table td{padding:10px}
+	.footer { position: absolute; margin-top:50px !important; }
 		
 </style>
 </head>
@@ -52,6 +53,9 @@
 			</tr>
 		<% } %>		
 	</table>
+	
+	<div class="footer">
 	<%@ include file="./footer.jsp" %>
+	</div>
 </body>
 </html>

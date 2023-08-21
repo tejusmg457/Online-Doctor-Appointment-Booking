@@ -5,17 +5,38 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Book appointment</title>
 </head>
-<title>Insert title here</title>
+<style>
+
+*{ margin: 0px; padding:0px;}
+body{ background-color: pink;}
+.div{ position: absolute; top: 100px; left: 550px;}
+.table{ margin-left: 100px; margin-top: 15px;}
+td{ 
+	padding: 10px;
+    color: black;
+    font-size: 18px;
+    font-weight: bold;}
+select{ padding: 4px;}
+.button{     padding: 8px; margin-left: 225px; margin-top: 10px; font-weight: bold;}
+#msg{ color: navy; font-weight: bolder; position: absolute;top: 510px; left: 510px; text-align:Center;}
+#h3{ text-align: center; margin-top: 15px; color: navy; font-weight: bold;}
+
+</style>
+<title>Appointment book</title>
 </head>
 <body>
-	<% String[] docNames = (String[]) request.getAttribute("docNames");%>
-	<% String[] docSpecialists = (String[]) request.getAttribute("docSpecialists"); %>
-	<h3>Book your appointment </h3>
-	<div>
+
+	<%@ include file="./header.jsp" %>
+	
+	<% String[] docNames = (String[]) request.getAttribute("docNames");
+	String[] docSpecialists = (String[]) request.getAttribute("docSpecialists"); %>
+
+	<div class="div">
+		<h3 id="h3">Book your appointment </h3>
 		<form action="../customer/BookAppointment" method="post">
-			<table>
+			<table class="table">
 				<tr>
 					<td>Patient Name</td><td><input type="text" name="pname"></input></td>
 				</tr>
@@ -51,7 +72,7 @@
 									</td>
 				</tr>
 			</table>
-			<button>submit</button>
+			<button class="button">submit</button>
 		</form>
 	</div>
 		
@@ -60,7 +81,9 @@
 	 %> 
 	 <%
 	   	 if(result!=null){ %> 
-  		  <h1><%= result %></h1> 
+  		  <h3 id="msg"><%= result %> msg</h3> 
 	<%} %>		
+	
+	<%@ include file="./footer.jsp" %>
 </body>
 </html>

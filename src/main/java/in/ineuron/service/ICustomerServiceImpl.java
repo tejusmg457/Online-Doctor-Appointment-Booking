@@ -1,5 +1,6 @@
 package in.ineuron.service;
 
+import java.sql.Date;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,9 +63,9 @@ public class ICustomerServiceImpl implements ICustomerService{
        appointmentStatus.setMessage("Need to be approval from doctor end");
        appointmentStatus.setAppointmentData(appointmentData);
 
-       AppointmentData data = customerRepoforAppointment.save(appointmentData);
+       String id = customerRepoforAppointment.save(appointmentData).getAppointid();
        appointmentStatusRepo.save(appointmentStatus);
-       return  data.getAppointid();
+       return  id;
 
     }
 
@@ -93,4 +94,9 @@ public class ICustomerServiceImpl implements ICustomerService{
 	public String getCustomerName(String cemail) {
 		return customerRepo.getCustomerName(cemail);
 	}
+
+    @Override
+    public int checkSlot(String dname, String dspecialist, Date sdate) {
+        return customerRepoforAppointment.checkSlot(dname, dspecialist, sdate);
+    }
 }

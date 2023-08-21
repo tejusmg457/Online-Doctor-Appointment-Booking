@@ -4,23 +4,22 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Admin dashboard</title>
 </head>
 <style>
 	footer{
     	    background-color: lightblue !important;
-		    position: absolute;
-		    top: 720px !important;
 		    width: 1516px !important;
-		    margin-bottom: 0px !important;
 		    padding: 10px !important;
 		    text-align: center !important;
+		    position: absolute;
+		    bottom: 0px;
     }
     footer h3{ background-color: inherit;}
 </style>
 <body>
 	<footer>
-    	<h3>&copy; Design and development by TEJAS || iNeuron.ai</h3>
+    	<h3>&copy; Design and development by TEJAS</h3>
     </footer>
 </body>
 </html>

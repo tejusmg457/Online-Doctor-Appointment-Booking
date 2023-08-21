@@ -1,0 +1,99 @@
+@charset "ISO-8859-1";
+*{
+	margin:0px;
+	padding: 0px;
+}
+body{background-color: lightcyan;}
+
+#ribbon{
+	padding: 10px;
+	color:cyan;
+	font-weight: bold;
+	background-color: grey;
+	padding-left: 555px;
+}
+
+
+.wish #wishMsg{
+	color: navy;
+	position:absolute;
+	top: 85px;
+    left: 1255px;
+}
+
+.wish #name{
+	color: navy;
+    position: absolute;
+    top: 109px;
+    left: 1255px;
+    font-weight: bolder;
+}
+
+.logout{
+	position: absolute;
+    padding: 10px;  padding-left: 15px; padding-right: 15px;
+    top: 90px;  left: 1435px;
+    color: seashell; font-weight: bold;
+    background-color: black; box-shadow: 2px 2px 2px silver;
+}
+
+.bookAppointment{
+	position: absolute;
+    padding: 10px;
+    top: 190px;
+    left: 52px;
+    font-weight: bold;
+	}
+
+.slot{
+	position: absolute;
+    top: 270px;
+    height: 300px;
+    width: 385px;
+    background-color: pink; border-radius: 50px;
+    box-shadow: 10px 10px 10px silver;
+    left: 45px; 
+    }
+
+#slot{
+	    text-align: center;
+    	margin-top: 16px;
+    	font-weight: bold;
+    	color: blue
+    }
+    
+.slotTable{ margin-top: 15px; margin-left: 45px;}
+td{ padding:10px; font-weight: bold;}
+
+.slotButton{ 
+		padding: 5px;
+   	 	margin-left: 110px;
+    	margin-top: 7px;
+    	font-weight: bold;
+    	color: navy; 
+    	}
+
+#msg{ 
+	    margin-top: 10px;
+	    text-align: center;
+	    font-weight: bold;
+	    color: red;
+}
+
+.status{
+	position: absolute; top: 600px; left: 50px;
+}
+
+#status{ color: blue}
+
+input {
+	padding: 5px; margin-top:10px;
+}
+
+.statusButton{ Padding:5px; font-weight: bold; margin-left: 6px;}
+
+.statusResult{ position: absolute; left: 650px; top: 250px}
+
+.statusResultTable{ margin: 2px solid brown;  }
+
+

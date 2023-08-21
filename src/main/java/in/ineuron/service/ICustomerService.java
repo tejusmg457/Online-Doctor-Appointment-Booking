@@ -1,6 +1,8 @@
 package in.ineuron.service;
 
 
+import java.sql.Date;
+
 import in.ineuron.model.AppointmentData;
 import in.ineuron.model.Customer;
 
@@ -24,5 +26,5 @@ public interface ICustomerService {
     
     public String getCustomerName(String cemail);
 
-    
+    public int checkSlot(String dname, String dspecialist, Date sdate);
 }

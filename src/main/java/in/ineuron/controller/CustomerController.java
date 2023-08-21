@@ -1,5 +1,7 @@
 package in.ineuron.controller;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Map;
 import java.util.Optional;
 
@@ -39,14 +41,27 @@ public class CustomerController {
     
     @PostMapping("/logincustomer")
     @ApiOperation("customer login")
-    public String loginCustomer(@RequestParam String cemail, String cpassword, Map<String, String>model) {
+    public String loginCustomer(@RequestParam String cemail, String cpassword, Map<String, Object>model) {
     	String cdpassword = customerService.loginCustomer(cemail);	
     	if(cpassword.equalsIgnoreCase(cdpassword)) {
-    		model.put("dname", customerService.getCustomerName(cemail));
+			String[] docNames = customerService.docNames();
+    		String[] docSpecialists = customerService.docSpecilist();
+    		String cname = customerService.getCustomerName(cemail);
+    		model.put("cname", cname);
+    		model.put("docNames", docNames);
+    		model.put("docSpecialists", docSpecialists);
+    		
+    		session.setAttribute("docNames", docNames);
+    		session.setAttribute("docSpecialists", docSpecialists);
+    		session.setAttribute("cname", cname);
+    		
     		return "customer-dashboard";
     	}
-    	else 
-    		return "failure";
+    	else { 
+    		String msg = "Invalid email and password";
+    		model.put("msg", msg);
+    		return "customerlogin";
+    	}
     }
     
     @GetMapping("/signup")
@@ -94,7 +109,7 @@ public class CustomerController {
     		String result = customerService.getAppointment(appointmentData);
     		String msg = "Appointment booked successfully and id "+ result +" for your reference";
             session.setAttribute("msg", msg);
-            return "redirect:/customer/book-appointment";
+            return "redirect:/api/customer/book-appointment";
     	}
     	return "failure";	
     }
@@ -127,6 +142,15 @@ public class CustomerController {
     		return "forgotpassword-customer";
     	}
     }
+
+	@GetMapping("checkslot")
+	public String checkSlot(String dname, String dspecialist, Date adate, Map<String, String>model){
+		int bookedSlots = customerService.checkSlot(dname, dspecialist, adate);
+		int remainingSlots = 30-bookedSlots;
+		String msg = remainingSlots + " slots available";
+		model.put("msg", msg);
+		return "customer-dashboard";
+	}
     
     @GetMapping("/logout")
     @ApiOperation("customer logout")
