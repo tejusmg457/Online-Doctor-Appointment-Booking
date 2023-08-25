@@ -32,6 +32,8 @@ public interface IDoctorService {
     
     public List<AppointmentData> todayAppointmentList(String demail);
     
+    public Date getAppointmentDate(String aId);
+    
     public List<AppointmentData> appointmentHistory(String demail);
     
     public String[] verifyDocSpecialist(String dname);
@@ -39,5 +41,7 @@ public interface IDoctorService {
     public String getPassword(String did, String demail);
     
     public String getDoctorName(String demail);
+    
+    public int getAppointmentApprovedCount(String dname, Date date, String status);
 
 }

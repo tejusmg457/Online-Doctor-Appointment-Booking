@@ -66,11 +66,10 @@
 
         <div class="right">
             <ul id="pages">
-                <li><a href="">Home</a></li>
-                <li><a href="">About</a></li>
-                <li><a href="/book-your-appointment/api/adminlogin">Admin</a></li>
-                <li><a href="/book-your-appointment/api/doctorlogin">Doctor</a></li>
-                <li><a href="/book-your-appointment/api/customerlogin">Customer</a></li>
+                <li><a href="/book-your-appointment/">Home</a></li>
+                <li><a href="/book-your-appointment/adminlogin">Admin</a></li>
+                <li><a href="/book-your-appointment/doctorlogin">Doctor</a></li>
+                <li><a href="/book-your-appointment/customerlogin">Customer</a></li>
             </ul>
         </div>
     </header>

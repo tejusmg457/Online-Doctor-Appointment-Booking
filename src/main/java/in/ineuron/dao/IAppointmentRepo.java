@@ -1,5 +1,7 @@
 package in.ineuron.dao;
 
+import java.sql.Date;
+
 import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,8 +16,6 @@ import in.ineuron.model.AppointmentStatus;
 @Transactional 
 public interface IAppointmentRepo extends JpaRepository<AppointmentStatus, String>{
 	
-	String query = "UPDATE appointment_status SET message = visit hospital on date, status = approved WHERE (totalrecords = :n)";
-	
 	@Query("SELECT recordNo from AppointmentStatus where appointmentid = :n")
 	public int findRecordNo(@Param ("n") String appointid);
 	
@@ -27,4 +27,10 @@ public interface IAppointmentRepo extends JpaRepository<AppointmentStatus, Strin
 	@Modifying
 	@Query("UPDATE AppointmentStatus a SET a.message = :m, status = :s WHERE (totalrecords = :n)")
 	public void completeAppointment(@Param("n") int recordNo, @Param("m") String message, @Param("s") String status);
+	
+	@Query(value="SELECT COUNT(*) FROM Appointmentdata a join Appointment_status s WHERE a.appointid = s.appointmentid AND status=:s AND dname=:e AND adate=:d", nativeQuery = true)
+	public int getAppointmentApprovedCount(@Param("e")String demail, @Param ("d") Date date, @Param ("s") String status);
+	
+	@Query(value = "SELECT adate FROM Appointmentdata WHERE appointid=:a", nativeQuery = true)
+	public Date getAppointmentDate(@Param ("a") String aId);
 }

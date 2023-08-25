@@ -1,7 +1,6 @@
 package in.ineuron.controller;
 
 import java.sql.Date;
-import java.time.LocalDate;
 import java.util.Map;
 import java.util.Optional;
 
@@ -24,7 +23,7 @@ import in.ineuron.service.IDoctorService;
 import io.swagger.annotations.ApiOperation;
 
 @Controller
-@RequestMapping("api/customer")
+@RequestMapping("/customer")
 public class CustomerController {
 	
     @Autowired
@@ -47,9 +46,6 @@ public class CustomerController {
 			String[] docNames = customerService.docNames();
     		String[] docSpecialists = customerService.docSpecilist();
     		String cname = customerService.getCustomerName(cemail);
-    		model.put("cname", cname);
-    		model.put("docNames", docNames);
-    		model.put("docSpecialists", docSpecialists);
     		
     		session.setAttribute("docNames", docNames);
     		session.setAttribute("docSpecialists", docSpecialists);
@@ -80,13 +76,8 @@ public class CustomerController {
 
     
     @GetMapping("/book-appointment")
-    @ApiOperation("displaying appointment booking form to customer ")
+    @ApiOperation("displaying appointment booking page to customer ")
     public String bookAppointment(Map<String, Object> common) {
-    	String[] docNames = customerService.docNames();
-    	String[] docSpecialists = customerService.docSpecilist();
-    	common.put("docNames", docNames);
-    	common.put("docSpecialists", docSpecialists);	
-    	common.put("msg", session.getAttribute("msg"));
     	return "appointment-booking";
     }
     
@@ -108,8 +99,8 @@ public class CustomerController {
     	}if(flag=true) {
     		String result = customerService.getAppointment(appointmentData);
     		String msg = "Appointment booked successfully and id "+ result +" for your reference";
-            session.setAttribute("msg", msg);
-            return "redirect:/api/customer/book-appointment";
+            model.addAttribute("msg", msg);
+            return "redirect:/customer/book-appointment";
     	}
     	return "failure";	
     }
@@ -117,7 +108,6 @@ public class CustomerController {
     @GetMapping("/getAppointmentStatus")
     @ApiOperation("patient can track appointment here")
     public String trackAppointment(@RequestParam String appointid, Map<String, Optional<AppointmentData>>model) {
-    	System.out.println("CustomerController.trackAppointment()");
     	Optional<AppointmentData> data = appointmentService.getAppointmentStatusById(appointid);
     	model.put("data", data);
     	return "customer-dashboard";
@@ -134,11 +124,11 @@ public class CustomerController {
     public String getPassword(@RequestParam String cid, String cemail, Map<String, String>model) {
     	String password  = customerService.getPassword(cid, cemail);
     	if(password!=null) {
-    		model.put("password", password);
+    		model.put("msg", "password is "+password );
     		return "forgotpassword-customer";
     	}else {
-    		String error = "Invalid data";
-    		model.put("error", error);
+    		String error = "Id or mailId Invalid!";
+    		model.put("msg", error);
     		return "forgotpassword-customer";
     	}
     }
@@ -155,7 +145,7 @@ public class CustomerController {
     @GetMapping("/logout")
     @ApiOperation("customer logout")
     public String logOut() {
-    	return "index";
+    	return "customerlogin";
     }
     
     

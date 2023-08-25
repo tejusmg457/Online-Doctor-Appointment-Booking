@@ -79,7 +79,7 @@
 	
 	<div class="whole">
 	<h3 id="h3">Doctor login</h3>
-        <form action="../api/doctor/doctorlogin" method="post">
+        <form action="doctor/doctorlogin" method="post">
                 <table>
                     <tr><td>Email</td><td><input type="text" name="demail"></td></tr>
                     <tr><td>Password</td><td><input type="password"name="dpassword"></td></tr>

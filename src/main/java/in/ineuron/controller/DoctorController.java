@@ -1,5 +1,6 @@
 package in.ineuron.controller;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -18,7 +19,7 @@ import in.ineuron.service.IDoctorService;
 import io.swagger.annotations.ApiOperation;
 
 @Controller
-@RequestMapping("api/doctor")
+@RequestMapping("/doctor")
 public class DoctorController {
 	
 	@Autowired
@@ -44,7 +45,7 @@ public class DoctorController {
 			model.put("dname", dname);
 			return "doctor-dashboard";
 		}else {
-			return "redirect:/api/doctor/doctor-login";
+			return "redirect:/doctor/doctor-login";
 		}		
 	}
 	
@@ -59,16 +60,25 @@ public class DoctorController {
 	
 	@GetMapping("/approveAppointment")
 	@ApiOperation("doctors will approve appointments from list of appointments page")
-	public String approveAppointment(@RequestParam String appointmentId,  Map<String, String>model) {
+	public String approveAppointment(@RequestParam String appointmentId,  Map<String, Object>model) {
 		HttpSession session = req.getSession();
 		String demail = (String)session.getAttribute("demail");
-	
+		
+		String dname = doctorService.getDoctorName(demail);
+		Date date = doctorService.getAppointmentDate(appointmentId);
+		int count = doctorService.getAppointmentApprovedCount(dname, date, "Approved");
+		
+		if(count<30) {
 		String msg = doctorService.approveAppointment(appointmentId);
-		if(msg.equalsIgnoreCase("approved")) {
-			String result = "Appointment approved for the ID :: "+appointmentId;
-			model.put("result", result);
-			String path = "redirect:/api/doctor/listOfPendingAppointments/?demail="+demail;
-			return path;
+			if(msg.equalsIgnoreCase("approved")) {
+				System.out.println("enter after condition block");
+				List<AppointmentData> appointmentData = (List<AppointmentData>) doctorService.listOfPendingAppointments(demail);
+				model.put("appointmentData", appointmentData);
+				model.put("msg", "appointment approved for the id "+appointmentId);
+				return "doctor-appointment-list";
+			}
+		}else {
+			model.put("msg", "limit over you're approved 30 appointments for the day "+date);
 		}
 		return "failure";
 	}
@@ -115,11 +125,11 @@ public class DoctorController {
     public String getPassword(@RequestParam String did, String demail, Map<String, String>model) {
     	String password  = doctorService.getPassword(did, demail);
     	if(password!=null) {
-    		model.put("password", password);
+    		model.put("msg", "password is "+password );
     		return "forgotpassword-doctor";
     	}else {
-    		String error = "Invalid data";
-    		model.put("error", error);
+    		String error = "Id or mailId Invalid!";
+    		model.put("msg", error);
     		return "forgotpassword-doctor";
     	}
     }

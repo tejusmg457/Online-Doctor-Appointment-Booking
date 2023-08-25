@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +23,7 @@ import in.ineuron.service.IDoctorServiceImpl;
 import io.swagger.annotations.ApiOperation;
 
 @Controller
-@RequestMapping("api/admin")
+@RequestMapping("/admin")
 public class AdminController {
 
     @Autowired 
@@ -33,21 +35,15 @@ public class AdminController {
     @Autowired
     private IAppointmentService appointmentService;
     
+    @Autowired
+    private HttpSession session;
+    
     @PostMapping("/adminlogin")
     @ApiOperation("admin login")
     public String verifyAdmin(@RequestParam String aname, String apassword, Map<String, Integer>model) {
     	if(aname.equalsIgnoreCase("admin") && apassword.equalsIgnoreCase("9844")) {
-    		
-    		int noOfAppointmentsForToday = docterService.noOfAppointmentsForToday();
-    		int noOfCustomers = customerService.noOfCustomers();
-    		int noOfDoctors = docterService.noOfDoctors();
-    		
-        	model.put("noOfAppointmentsForToday", noOfAppointmentsForToday);
-        	model.put("noOfCustomers", noOfCustomers);
-        	model.put("noOfDoctors", noOfDoctors);
-        	
-    		return "admin-dashboard";
-    	}else 
+    		return this.adminDashboardReload();
+    	}else
     		return "failure";
     }
     
@@ -79,14 +75,14 @@ public class AdminController {
     public String deleteCustomer(@RequestParam String cid, Map<String, String> model) {
     	String status = customerService.deleteCustomer(cid);
     	if(status.equalsIgnoreCase("yes")) {
-    		String msg = "Customer "+ cid + " data deleted successfully ";
+    		String msg = "Customer ID "+ cid + " data deleted successfully ";
     		model.put("msg", msg);
-    		return "redirect:/admin/adminlogin";
+    		return this.adminDashboardReload();
     	}
     	else {
     		String msg = "Customer "+ cid + " data can't be deleted ";
     		model.put("msg", msg);
-    		return "redirect:/admin/adminlogin";
+    		return "admin-dashboard";
     	}
     }
     
@@ -122,5 +118,17 @@ public class AdminController {
     @ApiOperation("lagout here")
     public String logOut() {
     	return "index";
+    }
+    
+    
+    public String adminDashboardReload(){
+    	int noOfAppointmentsForToday = docterService.noOfAppointmentsForToday();
+		int noOfCustomers = customerService.noOfCustomers();
+		int noOfDoctors = docterService.noOfDoctors();
+    	
+    	session.setAttribute("noOfAppointmentsForToday", noOfAppointmentsForToday);
+		session.setAttribute("noOfCustomers", noOfCustomers);
+		session.setAttribute("noOfDoctors", noOfDoctors);
+    	return "admin-dashboard";
     }
 }

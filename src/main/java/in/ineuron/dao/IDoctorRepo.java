@@ -23,6 +23,6 @@ public interface IDoctorRepo extends JpaRepository<Doctor, String> {
 	@Query("SELECT dspecialist FROM Doctor where dname=:d")
 	public String[] findDocSpecialist(@Param ("d") String dname);
 	
-	@Query(value="SELECT dpassword FROM Customer where did=:i AND demail=:e", nativeQuery = true)
+	@Query(value="SELECT dpassword FROM Doctor where did=:i AND demail=:e", nativeQuery = true)
 	public String getPassword(@Param ("i")String cid, @Param("e")String cemail);
 }

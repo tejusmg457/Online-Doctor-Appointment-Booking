@@ -121,4 +121,14 @@ public class IDoctorServiceImpl implements IDoctorService {
 	public String getDoctorName(String demail) {
 		return doctorRepo.findDocName(demail);
 	}
+
+	@Override
+	public int getAppointmentApprovedCount(String dname,  Date date, String status) {
+		return appointmentStatusRepo.getAppointmentApprovedCount(dname, date, status);
+	}
+
+	@Override
+	public Date getAppointmentDate(String aId) {
+		return appointmentStatusRepo.getAppointmentDate(aId);
+	}
 }

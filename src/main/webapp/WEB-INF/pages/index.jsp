@@ -8,22 +8,8 @@
     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/stylesheet.css">
 </head>
 <body>
-    <header style="background-color: #5d6a81 !important; width: 100%; height: 85px;">
-        <div class="left">
-            <img src="https://images.pexels.com/photos/4386466/pexels-photo-4386466.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
-            <h3>Angel-wood healthcare <br>Services</h3>
-        </div>
-
-        <div class="right">
-            <ul id="pages">
-                <li><a href="">Home</a></li>
-                <li><a href=../${pageContext.request.contextPath}/about.jsp>About</a></li>
-                <li><a href="/book-your-appointment/api/adminlogin">Admin</a></li>
-                <li><a href="/book-your-appointment/api/doctorlogin">Doctor</a></li>
-                <li><a href="/book-your-appointment/api/customerlogin">Customer</a></li>
-            </ul>
-        </div>
-    </header>
+    
+    <%@ include file="./header.jsp" %>
     
     <div class="area" style="background-color: sandybrown;">
         <div class="left">
@@ -43,8 +29,7 @@
    		<h4 id="auth">-Mahatma Gandhi</h4><br>
     </div>
     
-    <footer>
-    	<h3> &copy; Design and development by TEJAS || iNeuron.ai</h3>
-    </footer>
+    <%@ include file="./footer.jsp" %>
+    
 </body>
 </html>

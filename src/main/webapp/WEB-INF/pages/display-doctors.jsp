@@ -14,7 +14,7 @@
 	table th{ padding:10px; color:navy; font-weight: bold;}
 	table td{padding:10px}
 	button{padding:5px; font-weight: bold; color:red;}
-
+	.footer { position: absolute; margin-top:50px !important; }
 </style>
 </head>
 <body>
@@ -42,6 +42,7 @@
 		<% } %>		
 	</table>
 	
-	<%@ include file="./footer.jsp" %>
-</body>
+	<div class="footer">
+		<%@ include file="./footer.jsp" %>
+	</div></body>
 </html>

@@ -52,7 +52,7 @@
 	  <%@ include file="./header.jsp" %>
 	 <div class="login">
 	 	<h2 id="msg">customer login</h2>
-        <form action="../api/customer/logincustomer" method="post">
+        <form action="./customer/logincustomer" method="post">
                 <table>
                     <tr><td>Email</td><td><input type="text" name="cemail"></td></tr>
                     <tr><td>Password</td><td><input type="password" name="cpassword"></td></tr>
@@ -60,10 +60,10 @@
                 <br>
                 <button class="submit">Submit</button>
         </form>
-        <form action="../customer/showforgotpasswordpage"><button class="forgot">Forgot password</button></form>
+        <form action="customer/showforgotpasswordpage"><button class="forgot">Forgot password</button></form>
     
      	<form action="customer/signup">
-    		<h3 class="user">New User ? <a href="../customer/signup" class="register">Register here</a></h3>
+    		<h3 class="user">New User ? <a href="customer/signup" class="register">Register here</a></h3>
    		 </form>
    		 <%
 			String result =(String) request.getAttribute("msg"); 

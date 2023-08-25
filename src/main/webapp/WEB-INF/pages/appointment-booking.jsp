@@ -1,3 +1,4 @@
+<%@page import="java.time.LocalDate"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -20,7 +21,7 @@ td{
     font-weight: bold;}
 select{ padding: 4px;}
 .button{     padding: 8px; margin-left: 225px; margin-top: 10px; font-weight: bold;}
-#msg{ color: navy; font-weight: bolder; position: absolute;top: 510px; left: 510px; text-align:Center;}
+#msg{ color: navy; font-weight: bolder; position: absolute;top: 510px; left: 510px; }
 #h3{ text-align: center; margin-top: 15px; color: navy; font-weight: bold;}
 
 </style>
@@ -30,8 +31,8 @@ select{ padding: 4px;}
 
 	<%@ include file="./header.jsp" %>
 	
-	<% String[] docNames = (String[]) request.getAttribute("docNames");
-	String[] docSpecialists = (String[]) request.getAttribute("docSpecialists"); %>
+	<% String[] docNames = (String[]) session.getAttribute("docNames");
+	String[] docSpecialists = (String[]) session.getAttribute("docSpecialists"); %>
 
 	<div class="div">
 		<h3 id="h3">Book your appointment </h3>
@@ -46,7 +47,7 @@ select{ padding: 4px;}
 				</tr>
 				
 				<tr>
-					<td>Appointment date</td><td><input type="date" name="adate"></input></td>
+					<td>Appointment date</td><td><input type="date" name="adate" min=<%= LocalDate.now() %>></input></td>
 				</tr>
 				
 				<tr>
@@ -77,11 +78,11 @@ select{ padding: 4px;}
 	</div>
 		
 	 <%
-		String result =(String) request.getAttribute("msg"); 
+		String result =(String) session.getAttribute("msg"); 
 	 %> 
 	 <%
 	   	 if(result!=null){ %> 
-  		  <h3 id="msg"><%= result %> msg</h3> 
+  		  <h3 id="msg" style="text-align:Center;"><%= result %> </h3> 
 	<%} %>		
 	
 	<%@ include file="./footer.jsp" %>

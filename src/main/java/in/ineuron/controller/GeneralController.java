@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import io.swagger.annotations.ApiOperation;
 
 @Controller
-@RequestMapping("api/")
+@RequestMapping("/")
 public class GeneralController {
 	
 	@GetMapping("")

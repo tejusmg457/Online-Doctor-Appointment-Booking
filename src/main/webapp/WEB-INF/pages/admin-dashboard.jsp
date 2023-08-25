@@ -12,9 +12,9 @@
 	<%@ include file="./header.jsp" %>
 	
 	<h2>Admin Dashboard</h2>
-	<% int noOfAppointmentsForToday =  (int) request.getAttribute("noOfAppointmentsForToday"); %>
-	<% int noOfCustomers =  (int) request.getAttribute("noOfCustomers"); %>
-	<% int noOfDoctors =  (int) request.getAttribute("noOfDoctors"); %>
+	<% int noOfAppointmentsForToday =  (int) session.getAttribute("noOfAppointmentsForToday"); %>
+	<% int noOfCustomers =  (int) session.getAttribute("noOfCustomers"); %>
+	<% int noOfDoctors =  (int) session.getAttribute("noOfDoctors"); %>
 	
 	<div class="appointment">
 		<h3>Appointments today <br><hr><h1> <%= noOfAppointmentsForToday %></h1> </h3>
@@ -69,7 +69,7 @@
 		 %> 
 	 	<%
 	   	 	if(deleteResult!=null){ %> 
-  		  	<h4><%= deleteResult %></h4> 
+  		  	<h4 style="margin-top: 5px;"><%= deleteResult %></h4> 
 		<%} %>
 	</div>
 	

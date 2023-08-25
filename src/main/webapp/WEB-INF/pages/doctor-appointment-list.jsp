@@ -18,6 +18,7 @@ table td{padding:10px}
 #h3{text-align: center; color:navy; font-weight: bold; margin-top: 15px}
 .approvebutton{ padding:2px; font-weight: bold; color: green;}
 .noappointments{ text-align: center; color:navy; font-weight: bold; margin-top: 15px;}
+#h4{ color:navy; text-align: center; font-weight: bold; margin-top: 25px;}
 </style>
 
 </head>
@@ -54,7 +55,14 @@ table td{padding:10px}
 			</table>
 		<% } %>
 	</div>
+		<%
+			String msg =(String) request.getAttribute("msg"); 
+		 %> 
+		 <%
+		   	 if(msg!=null){ %> 
+		   	 	<h4 id="h4"><%= msg%></h4>
+		<%} %>
 		
-	<%@ include file="./footer.jsp" %>
+		<%@ include file="./footer.jsp" %>
 </body>
 </html>

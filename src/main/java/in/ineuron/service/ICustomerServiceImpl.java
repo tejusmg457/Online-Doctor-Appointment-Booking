@@ -36,7 +36,6 @@ public class ICustomerServiceImpl implements ICustomerService{
     public String saveCustomer(Customer customer) {
         boolean flag = false;
         String id = customerRepo.save(customer).getCid();
-        System.out.println("customer id is :: "+ id);
         flag=true;
         if(flag){
             return id;

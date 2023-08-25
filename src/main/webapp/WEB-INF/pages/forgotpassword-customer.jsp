@@ -4,10 +4,14 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Forgot password?</title>
+<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/forgotpassword.css">
 </head>
 <body>
-	<div>
+
+	<%@ include file="./header.jsp" %>
+	
+	<div class="Section">
 		<form action="getPassword" method="post">
 			<table>
 				<tr>
@@ -17,19 +21,18 @@
 					<td>Mail id</td><td><input name="cemail" type="email"/></td>
 				</tr>
 			</table>
-			<button>Get password</button>
+			<button class="button">Get password</button>
 		</form>
 		<%
-		String result =(String) request.getAttribute("password"); 
-		String error =(String) request.getAttribute("error"); 
+		String result =(String) request.getAttribute("msg"); 
 	 	%> 
 	 	<%
 		   	 if(result!=null){ %> 
-	  		 <h1>Your password is <%= result %></h1> 
-	  		 <%} 	
-	  		  if(error!=null) {%> 
-	  		 <h1>Invalid Customer Id and mail Id</h1> 
-			<%} %>
+	  		 <h3 id="result"><%= result %></h3> 
+	  		<% } %>
 	</div>
+	
+	<%@ include file="./footer.jsp" %>
+	
 </body>
 </html>
