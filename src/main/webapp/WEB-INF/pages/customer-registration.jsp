@@ -89,7 +89,7 @@
 		 %> 
 		 <%
 		   	 if(result!=null){ %> 
-	  		  <h3 id="msg">Customer registration successfull and id <%= result %> for your reference</h3> 
+	  		  <h3 id="msg"><%= result %></h3> 
 		<%} %>	
 	</div>
 	

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Admin dashboard</title>
   <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/admindashboard.css">
 </head>
 <body>
@@ -45,7 +45,7 @@
 	</div>
 	
 	<div class="appointList">
-		<h3>Get appointment List</h3>
+		<h3>Get appointments List</h3>
 		<form action="../admin/listofappointments">
 			<table class="appointListTable">
 				<tr>
@@ -55,7 +55,7 @@
 					<td>To</td><td><input type="date" name="tdate"></input></td>
 				</tr>	
 			</table>
-			<button class="listdocsubbutton">get List</button>
+			<button class="listdocsubbutton">Get List</button>
 		</form>
 	</div>
 	

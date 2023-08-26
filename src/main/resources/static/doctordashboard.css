@@ -106,3 +106,31 @@ body{background-color: lightcyan;}
     font-weight: bold;
     margin-top: 15px;
 }
+
+.appointList{
+	position: absolute;
+    top: 200px;
+    left: 900px;
+    background-color: yellowgreen;
+    box-shadow: 10px 10px 10px darkolivegreen;
+    margin-left: 85px;
+    height: 225px;
+}
+
+.appointList .appointListTable{
+	padding:30px;
+}
+
+.appointList .appointListTable td{
+	padding:10px;
+}
+
+.appointList h3{
+	margin-top: 10px;
+	text-align:center; 	font-weight: bold; color: darkblue;	
+}
+
+.listdocsubbutton{
+	position: absolute; padding: 10px;
+    margin-left: 90px;  top: 165px; 
+}

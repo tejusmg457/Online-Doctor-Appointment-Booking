@@ -69,9 +69,9 @@ public class CustomerController {
     @PostMapping("/save-customer")
     @ApiOperation("customer can register here")
     public String saveCustomer(@ModelAttribute("customer") Customer customer, Map<String, String> model){
-    	String msg = customerService.saveCustomer(customer);
-    	model.put("msg", msg);
-    	return "customer-registration";
+    	 	String msg = customerService.saveCustomer(customer);
+			model.put("msg", msg);
+			return "customer-registration";
     }
 
     
@@ -100,7 +100,8 @@ public class CustomerController {
     		String result = customerService.getAppointment(appointmentData);
     		String msg = "Appointment booked successfully and id "+ result +" for your reference";
             model.addAttribute("msg", msg);
-            return "redirect:/customer/book-appointment";
+            System.out.println(msg);
+            return "appointment-booking";
     	}
     	return "failure";	
     }

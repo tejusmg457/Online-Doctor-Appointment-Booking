@@ -78,7 +78,7 @@ select{ padding: 4px;}
 	</div>
 		
 	 <%
-		String result =(String) session.getAttribute("msg"); 
+		String result =(String) request.getAttribute("msg"); 
 	 %> 
 	 <%
 	   	 if(result!=null){ %> 

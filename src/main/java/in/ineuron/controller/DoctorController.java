@@ -28,6 +28,9 @@ public class DoctorController {
 	@Autowired
 	HttpServletRequest req;
 	
+	@Autowired
+	HttpSession session;
+	
 	@GetMapping("/doctor-login")
 	@ApiOperation("doctor login page display")
 	public String doctorLoginPage(Map<String, String> model) {
@@ -41,8 +44,10 @@ public class DoctorController {
 		String dbpassword = doctorService.loginDoctor(demail);
 		if(dpassword.equalsIgnoreCase(dbpassword)) {
 			String dname = doctorService.getDoctorName(demail);
-			model.put("demail", demail);
-			model.put("dname", dname);
+			session.setAttribute("demail", demail);
+			session.setAttribute("dname", dname);
+			System.out.println(session.getAttribute("dname"));
+			System.out.println(session.getAttribute("demail"));
 			return "doctor-dashboard";
 		}else {
 			return "redirect:/doctor/doctor-login";
@@ -88,11 +93,8 @@ public class DoctorController {
 	public String completeAppointment(@RequestParam String appointid, Map<String, String>model) {
 		String msg = doctorService.completeAppointment(appointid);
 		if(msg.equalsIgnoreCase("completed")) {
-			String demail = (String) req.getSession().getAttribute("demail");
-			System.out.println(demail);
 			String info = "Status updated for id "+appointid;
 			model.put("info", info);
-			model.put("demail", demail);
 			return "doctor-dashboard";	
 		}
 		return "failure";
@@ -108,9 +110,12 @@ public class DoctorController {
 	
 	@GetMapping("/Appointment-history")
 	@ApiOperation("Shows a list of appointments to perticular doctor")
-	public String appointmentHistory(@RequestParam String demail, Map<String, List<AppointmentData>>model ) {
+	public String appointmentHistory(@RequestParam String demail, Date fdate, Date tdate, Map<String, Object>model ) {
 		List<AppointmentData> appointmentHistory = doctorService.appointmentHistory(demail);
 		model.put("appointments", appointmentHistory);
+		model.put("fdate", fdate);
+		model.put("tdate", tdate);
+		model.put("doctor", "doctor");
 		return "dispay-appointments";
 	}
 	

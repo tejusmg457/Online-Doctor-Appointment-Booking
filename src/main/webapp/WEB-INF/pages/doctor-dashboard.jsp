@@ -13,10 +13,9 @@
 	<%@ include file="./header.jsp" %>
 	
 	
-	<%String demail = (String) request.getAttribute("demail");
-	String dname = (String) request.getAttribute("dname"); 
-	session.setAttribute("demail", demail); 
-	session.setAttribute("dname", dname); 
+	<%
+	String demail = (String) session.getAttribute("demail");
+	String dname = (String) session.getAttribute("dname"); 
 	
 	int hour = LocalDateTime.now().getHour();
 	String wish=null;
@@ -31,7 +30,7 @@
 	
 	<div class="wish">
 		<h3 id="wishMsg"><%= wish %></h3>
-		<h3 id="name">Docter. <%= dname.toUpperCase() %></h3>
+		<h3 id="name">Docter. <%= dname %></h3>
 	</div>
 	
 	<form action="logout">
@@ -46,9 +45,18 @@
 		<form action="listOfAppointmentsToday" ><button class="appointmentToday" name="demail" value="<%= demail %>">Today's appointment List</button></form>
 	</div>
 	
-	<div>
+	<div class="appointList">
+		<h3>Get appointments List</h3>
 		<form action="Appointment-history">
-			<button class="appointmenthistory" name="demail" value="<%= demail %>">Appointment History</button>
+			<table class="appointListTable">
+				<tr>
+					<td>From</td><td><input type="date" name="fdate"></input></td>
+				</tr>
+				<tr>
+					<td>To</td><td><input type="date" name="tdate"></input></td>
+				</tr>	
+			</table>
+			<button class="listdocsubbutton" name="demail" value="<%= demail %>">Get data</button>
 		</form>
 	</div>
 	

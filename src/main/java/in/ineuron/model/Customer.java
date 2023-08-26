@@ -18,8 +18,8 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name="Customer")
 public class Customer {
-    
-    @Id
+	
+	@Id
     @GenericGenerator(name="mygen", strategy = "in.ineuron.idgenerator.CustomerIdGenerator")
     @GeneratedValue(generator = "mygen")
     @Column(name="cid")
@@ -34,10 +34,10 @@ public class Customer {
     @Column(name="cgender")
     private String cgender;
     
-    @Column(name="cphoneNo")
+    @Column(name="cphoneNo", unique=true)
     private long cphoneNo;
     
-    @Column(name="cemail")
+    @Column(name="cemail", unique = true)
     private String cemail;
     
     @Column(name="cpassword")

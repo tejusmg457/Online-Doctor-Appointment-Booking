@@ -2,6 +2,7 @@ package in.ineuron.service;
 
 
 import java.sql.Date;
+import java.sql.SQLIntegrityConstraintViolationException;
 
 import in.ineuron.model.AppointmentData;
 import in.ineuron.model.Customer;

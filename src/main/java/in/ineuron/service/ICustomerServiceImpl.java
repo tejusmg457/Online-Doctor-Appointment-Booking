@@ -34,13 +34,18 @@ public class ICustomerServiceImpl implements ICustomerService{
 
     @Override
     public String saveCustomer(Customer customer) {
-        boolean flag = false;
-        String id = customerRepo.save(customer).getCid();
-        flag=true;
-        if(flag){
-            return id;
-        }else
-            return "Customer registration failed";
+        
+    	String id = null;
+    	
+    	try{        
+    		id = customerRepo.save(customer).getCid();
+    	}catch(Exception e) {
+    		return "Patient already registered you can login!";
+    	}
+    	if(id!=null)
+    		return "Patient registration successfull and id "+ id +" for your reference";
+    	else
+    		return "Patient registration failed";
     }
 
     @Override
