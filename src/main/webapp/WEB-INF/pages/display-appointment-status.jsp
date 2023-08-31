@@ -21,21 +21,50 @@
 	<%@ include file="./header.jsp" %>
 	<%
 		Optional<AppointmentData> appointment = (Optional<AppointmentData>) request.getAttribute("data");
-		String status = appointment.get().getAppointmentStatus().getStatus();	
+		List<AppointmentData> appointmentData = (List<AppointmentData>) request.getAttribute("listOfData");
 	%>
-	<h3 id="h3">Tracking details for appointment Id <%= appointment.get().getAppointid() %> is</h3>
-	<table>
-			<th>Appointment Id</th><th>Patient name</th><th>Patient Age</th><th>Appointment date</th><th>Symptoms</th><th>Consulting-Doctor</th><th>Doctor specialist in</th><th>Status of appointment</th>
-			<tr>
-				<td><%= appointment.get().getAppointid() %></td>
-				<td><%= appointment.get().getPname() %></td>
-				<td><%= appointment.get().getPage() %></td>
-				<td><%= appointment.get().getAdate() %></td>
-				<td><%= appointment.get().getPsymptoms()%></td>
-				<td><%= appointment.get().getDname() %></td>
-				<td><%= appointment.get().getDspecialist() %></td>
-				<td id="status"><%= status %></td>
-			</tr>
+	<% if(appointment!=null) { %>
+		<h3 id="h3">Tracking details for appointment Id <%= appointment.get().getAppointid() %> is</h3>
+		<table>
+			<th>Appointment Id</th><th>Patient name</th><th>Patient Age</th><th>Appointment date</th><th>Symptoms</th><th>Consulting-Doctor</th><th>Doctor specialist in</th><th>Status</th>
+				<tr>
+					<td><%= appointment.get().getAppointid() %></td>
+					<td><%= appointment.get().getPname() %></td>
+					<td><%= appointment.get().getPage() %></td>
+					<td><%= appointment.get().getAdate() %></td>
+					<td><%= appointment.get().getPsymptoms()%></td>
+					<td><%= appointment.get().getDname() %></td>
+					<td><%= appointment.get().getDspecialist() %></td>
+					<td id="status"><%= appointment.get().getAppointmentStatus().getStatus() %></td>
+				</tr>
+			</table>
+			
+			<% }
+			
+			else if(appointmentData!=null){ %>
+				<h3 id="h3">List of appointments you're consulted with us</h3>
+				<table>
+					<%int noOfRow = appointmentData.size(), rowcount=0;%>
+					<th>Appointment Id</th><th>Patient name</th><th>Patient Age</th><th>Appointment date</th><th>Symptoms</th><th>Consulting-Doctor</th><th>Doctor specialist in</th><th>Status</th>
+					<% for(rowcount=0; rowcount <noOfRow; rowcount++) {%>
+						<tr>
+							<% AppointmentData data = (AppointmentData) appointmentData.get(rowcount); %>
+								<td><%= data.getAppointid() %></td>
+								<td><%= data.getPname() %></td>
+								<td><%= data.getPage() %></td>
+								<td><%= data.getAdate() %></td>
+								<td><%= data.getPsymptoms()%></td>
+								<td><%= data.getDname()    %></td>
+								<td><%= data.getDspecialist() %></td>
+								<td><%= data.getAppointmentStatus().getStatus() %></td>
+						</tr>
+					<% } %>		
+				</table>
+					
+			<% }else{%>
+				<h3 id="h3" style="color:red;">No records found! please take consultation with us from next time</h3>
+			<%} %>
+				
 	</table>
 	<%@ include file="./footer.jsp" %>
 </body>

@@ -32,7 +32,8 @@ select{ padding: 4px;}
 	<%@ include file="./header.jsp" %>
 	
 	<% String[] docNames = (String[]) session.getAttribute("docNames");
-	String[] docSpecialists = (String[]) session.getAttribute("docSpecialists"); %>
+	String[] docSpecialists = (String[]) session.getAttribute("docSpecialists"); 
+	%>
 
 	<div class="div">
 		<h3 id="h3">Book your appointment </h3>
@@ -73,7 +74,7 @@ select{ padding: 4px;}
 									</td>
 				</tr>
 			</table>
-			<button class="button">submit</button>
+			<button class="button" >submit</button>
 		</form>
 	</div>
 		

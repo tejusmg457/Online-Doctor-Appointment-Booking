@@ -30,7 +30,7 @@
 	
 	<div class="wish">
 		<h3 id="wishMsg"><%= wish %></h3>
-		<h3 id="name">Docter. <%= dname %></h3>
+		<h3 id="name">Doctor. <%= dname %></h3>
 	</div>
 	
 	<form action="logout">

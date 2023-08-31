@@ -36,5 +36,9 @@ public class AppointmentStatus {
 	@OneToOne
 	@JoinColumn(name="appointmentid")
 	private AppointmentData appointmentData;
+	
+	@OneToOne
+	@JoinColumn(name="customer_id")
+    private Customer customer;
 
 }

@@ -1,7 +1,10 @@
 package in.ineuron.service;
 
 import java.sql.Date;
+import java.util.List;
 import java.util.Optional;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +22,9 @@ public class ICustomerServiceImpl implements ICustomerService{
     @Autowired
     private ICustomerRepo customerRepo;
     
+    @Autowired
+    private HttpSession session;
+    
 
     @Autowired
     private ICustomerRepoForAppointment customerRepoforAppointment;
@@ -34,7 +40,6 @@ public class ICustomerServiceImpl implements ICustomerService{
 
     @Override
     public String saveCustomer(Customer customer) {
-        
     	String id = null;
     	
     	try{        
@@ -66,6 +71,9 @@ public class ICustomerServiceImpl implements ICustomerService{
        appointmentStatus.setStatus("Pending");
        appointmentStatus.setMessage("Need to be approval from doctor end");
        appointmentStatus.setAppointmentData(appointmentData);
+       
+       Customer customer = customerRepo.findById((String) session.getAttribute("customerId")).get();
+       appointmentData.setCustomer(customer);
 
        String id = customerRepoforAppointment.save(appointmentData).getAppointid();
        appointmentStatusRepo.save(appointmentStatus);
@@ -103,4 +111,19 @@ public class ICustomerServiceImpl implements ICustomerService{
     public int checkSlot(String dname, String dspecialist, Date sdate) {
         return customerRepoforAppointment.checkSlot(dname, dspecialist, sdate);
     }
+
+	@Override
+	public String getCustomerId(String cemail) {
+		return customerRepo.getCustomerId(cemail);
+	}
+
+	@Override
+	public List<AppointmentData> getAppointmentHistory(String customerId) {
+		List<String> data = customerRepo.getAppointmentHistory(customerId);
+		if(data.size()>0) {
+			List<AppointmentData> appoointmentData = customerRepoforAppointment.findAllById(data);
+			return appoointmentData;
+		}
+		return null;
+	}
 }

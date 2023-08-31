@@ -16,6 +16,7 @@
 	
 	String[] docNames = (String[])session.getAttribute("docNames");
 	String[] docSpecialists = (String[])session.getAttribute("docSpecialists");
+	String cemail = (String)session.getAttribute("cemail");
 	
 	int hour = LocalDateTime.now().getHour();
 	String wish=null;
@@ -38,7 +39,11 @@
 	</form>
 
 	<form action="../customer/book-appointment">
-		<button class="bookAppointment" >Book appointment</button>
+		<button class="bookAppointment" name="cemail" value=<%= cemail %> >Book appointment</button>
+	</form>
+	
+	<form action="../customer/history">
+		<button class="ahistory" name="cemail" value=<%= cemail %> >Appointment history</button>
 	</form>
 	
 	<div class="slot">

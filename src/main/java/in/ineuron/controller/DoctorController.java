@@ -46,8 +46,6 @@ public class DoctorController {
 			String dname = doctorService.getDoctorName(demail);
 			session.setAttribute("demail", demail);
 			session.setAttribute("dname", dname);
-			System.out.println(session.getAttribute("dname"));
-			System.out.println(session.getAttribute("demail"));
 			return "doctor-dashboard";
 		}else {
 			return "redirect:/doctor/doctor-login";

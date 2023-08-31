@@ -50,6 +50,7 @@ public class CustomerController {
     		session.setAttribute("docNames", docNames);
     		session.setAttribute("docSpecialists", docSpecialists);
     		session.setAttribute("cname", cname);
+    		session.setAttribute("cemail", cemail);
     		
     		return "customer-dashboard";
     	}
@@ -77,7 +78,9 @@ public class CustomerController {
     
     @GetMapping("/book-appointment")
     @ApiOperation("displaying appointment booking page to customer ")
-    public String bookAppointment(Map<String, Object> common) {
+    public String bookAppointment(@RequestParam String cemail) {
+    	String customerId = customerService.getCustomerId(cemail);
+    	session.setAttribute("customerId", customerId);
     	return "appointment-booking";
     }
     
@@ -100,10 +103,16 @@ public class CustomerController {
     		String result = customerService.getAppointment(appointmentData);
     		String msg = "Appointment booked successfully and id "+ result +" for your reference";
             model.addAttribute("msg", msg);
-            System.out.println(msg);
             return "appointment-booking";
     	}
     	return "failure";	
+    }
+    
+    @GetMapping("/history")
+    public String appointmentHistory(@RequestParam String cemail, Map<String, Object>model) {
+    	String customerId = customerService.getCustomerId(cemail);
+    	model.put("listOfData", customerService.getAppointmentHistory(customerId));
+    	return "display-appointment-status";
     }
     
     @GetMapping("/getAppointmentStatus")

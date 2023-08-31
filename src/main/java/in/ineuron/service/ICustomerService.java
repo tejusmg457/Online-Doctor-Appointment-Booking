@@ -2,7 +2,7 @@ package in.ineuron.service;
 
 
 import java.sql.Date;
-import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.List;
 
 import in.ineuron.model.AppointmentData;
 import in.ineuron.model.Customer;
@@ -28,4 +28,8 @@ public interface ICustomerService {
     public String getCustomerName(String cemail);
 
     public int checkSlot(String dname, String dspecialist, Date sdate);
+    
+    public String getCustomerId(String cemail);
+    
+    public List<AppointmentData> getAppointmentHistory(String customerId);
 }
